@@ -1,0 +1,39 @@
+<resources>
+    <string name="titulo_tab_negocios">BUSCALO AKI</string>
+    <string name="app_name">"HazloAkki App"</string>
+
+    <string name="action_settings">Configuración</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_carrito">Añadir al carrito</string>
+
+    <string name="item_inicio">Inicio</string>
+    <string name="item_cuenta">Mi Cuenta</string>
+    <string name="item_categorias">HazloAkki App</string>
+    <string name="item_configuracion">Configuración</string>
+
+    <string name="titulo_comidas_populares">Lo más pedido</string>
+
+    <string name="titulo_tab_platillos">PLATILLOS</string>
+    <string name="titulo_tab_eventos">OFERTAS Y PROMOCIONEA</string>
+    <string name="titulo_tab_perfil">SOCIAL</string>
+    <string name="titulo_tab_social">SOCIAL</string>
+
+
+    <string name="titulo_tab_direcciones">DIRECCIONES</string>
+    <string name="titulo_tab_tarjetas">TARJETAS</string>
+
+    <string name="texto_no_tarjetas">No tienes ninguna tarjeta asociada</string>
+
+    <string name="etiqueta_carrito">Carrito</string>
+
+    <string name="texto_cambiar_contrasena">Cambia tu contraseña</string>
+    <string name="etiqueta_contrasena">Contraseña</string>
+    <string name="etiqueta_info_usuario">Información del usuario</string>
+
+
+
+    <string name="title_section1">Teléfonos</string>
+    <string name="title_section2">Tablets</string>
+    <string name="title_section3">Portátiles</string>
+
+</resources>

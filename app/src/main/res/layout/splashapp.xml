@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/primaryDarkColor" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout android:background="@color/window_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView android:id="@+id/im_splash" android:background="@color/primaryDarkColor"
+
+            android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" android:alpha="0.4"   android:src="@drawable/tarjeta_credito"  />
+
+        <TextView android:textSize="25sp" android:textColor="@color/color_light"
+            android:id="@+id/tv_app_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name" android:layout_centerInParent="true" />
+        <TextView android:textSize="16sp" android:textStyle="italic"
+            android:textColor="@color/color_light" android:id="@+id/tv_desp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp" android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp" android:text="Encuentra todo en un solo lugar"
+            android:layout_below="@+id/tv_app_name"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</FrameLayout>
