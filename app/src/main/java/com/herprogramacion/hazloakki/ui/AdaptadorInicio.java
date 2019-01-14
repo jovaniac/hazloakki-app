@@ -1,5 +1,6 @@
 package com.herprogramacion.hazloakki.ui;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.modelo.AccionesDto;
 import com.herprogramacion.hazloakki.modelo.Comida;
+
+import java.util.List;
 
 /**
  * Adaptador para mostrar las comidas más pedidas en la sección "Inicio"
@@ -18,6 +22,13 @@ public class AdaptadorInicio
         extends RecyclerView.Adapter<AdaptadorInicio.ViewHolder> {
 
 
+    private List<AccionesDto> items;
+    private Context mCtx;
+
+    public AdaptadorInicio(Context mCtx, List<AccionesDto> productList) {
+        this.mCtx = mCtx;
+        this.items = productList;
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public TextView nombre;
@@ -37,7 +48,7 @@ public class AdaptadorInicio
 
     @Override
     public int getItemCount() {
-        return Comida.COMIDAS_POPULARES.size();
+        return items.size();
     }
 
     @Override
@@ -49,16 +60,31 @@ public class AdaptadorInicio
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Comida item = Comida.COMIDAS_POPULARES.get(i);
+        AccionesDto item = items.get(i);
 
         Glide.with(viewHolder.itemView.getContext())
-                .load(item.getIdDrawable())
+                .load(item.getIdAccion())
                 .centerCrop()
                 .into(viewHolder.imagen);
-        viewHolder.nombre.setText(item.getNombre());
-        viewHolder.precio.setText("$" + item.getPrecio());
+        viewHolder.nombre.setText(item.getDescripcion());
+        viewHolder.precio.setText(item.getNombre());
 
     }
 
+    public void onBindViewHolder(AdaptadorAcciones.AccionesViewHolder viewHolder, int i) {
+        AccionesDto item = items.get(i);
 
+        Glide.with(viewHolder.itemView.getContext()).load(item.getIdAccion()).centerCrop().into(viewHolder.imagen);
+        viewHolder.nombre.setText(item.getNombre());
+        viewHolder.descripcion.setText(item.getDescripcion());
+
+    }
+
+    public List<AccionesDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<AccionesDto> items) {
+        this.items = items;
+    }
 }

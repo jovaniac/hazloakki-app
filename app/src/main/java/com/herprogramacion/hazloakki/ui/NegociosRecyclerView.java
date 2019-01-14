@@ -209,12 +209,17 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
                 JSONObject negocio = (JSONObject) response.get(i);
 
                 NegocioDto negocioDto = new NegocioDto();
+                negocioDto.setIdNegocio(negocio.getString("idNegocio"));
                 negocioDto.setNombre(negocio.getString("nombre"));
                 negocioDto.setDescripcion(negocio.getString("descripcion"));
                 negocioDto.setEstatus(negocio.getBoolean("estatus"));
                 negocioDto.setDomicilio(negocio.getString("domicilio"));
-                negocioDto.setIdNegocio(negocio.getString("idNegocio"));
                 negocioDto.setSitioWeb(negocio.getString("sitioWeb"));
+              /*  negocioDto.setCalificacion(negocio.getString("calificacion"));
+                negocioDto.setDistancia(negocio.getString("distancia"));
+                negocioDto.setHorario(negocio.getString("horario"));
+                negocioDto.setCategoria(negocio.getString("categoria"));
+            */
 
 
                 listNegocio.add(negocioDto);

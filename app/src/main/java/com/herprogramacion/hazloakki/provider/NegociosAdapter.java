@@ -16,9 +16,7 @@ import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Adaptador con un cursor para poblar la lista de alquileres desde SQLite
- */
+
 public class NegociosAdapter extends RecyclerView.Adapter<NegociosAdapter.ViewHolder> {
     private final Context contexto;
     private Cursor items;
@@ -57,10 +55,10 @@ public class NegociosAdapter extends RecyclerView.Adapter<NegociosAdapter.ViewHo
 
         public ViewHolder(View v) {
             super(v);
-            viewNombre = (TextView) v.findViewById(R.id.nombre);
-            viewUbicacion = (TextView) v.findViewById(R.id.ubicacion);
-            viewDescripcion = (TextView) v.findViewById(R.id.descripcion);
-            viewClasificacion = (TextView) v.findViewById(R.id.clasificacion);
+           // viewNombre = (TextView) v.findViewById(R.id.nombre);
+            // viewUbicacion = (TextView) v.findViewById(R.id.ubicacion);
+            //viewDescripcion = (TextView) v.findViewById(R.id.descripcion);
+            //viewClasificacion = (TextView) v.findViewById(R.id.clasificacion);
             viewFoto = (ImageView) v.findViewById(R.id.foto);
             v.setOnClickListener(this);
         }

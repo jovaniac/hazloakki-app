@@ -1,24 +1,91 @@
 package com.herprogramacion.hazloakki.ui;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.modelo.AccionesDto;
+import com.herprogramacion.hazloakki.modelo.Constants;
+import com.herprogramacion.hazloakki.network.AppController;
+import com.herprogramacion.hazloakki.utils.RecyclerItemClickListener;
 
-/**
- * Fragmento para la sección de "Inicio"
- */
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+
 public class FragmentoInicio extends Fragment {
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
     private AdaptadorInicio adaptador;
+    private String REQUEST_CATEGORIAS = "http://192.168.0.7:8091/api/v1/acciones";
+    private String TAG = FragmentTabServicios.class.getSimpleName();
+    private Gson gson = new Gson();
+    private static final String INDICE_SECCION = "com.restaurantericoparico.FragmentoCategoriasTab.extra.INDICE_SECCION";
+    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
+
+
+
+
 
     public FragmentoInicio() {
+    }
+
+    public static FragmentoInicio nuevaInstancia(int indiceSeccion) {
+        FragmentoInicio fragment = new FragmentoInicio();
+        Bundle args = new Bundle();
+        args.putInt(INDICE_SECCION, indiceSeccion);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -30,9 +97,78 @@ public class FragmentoInicio extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         reciclador.setLayoutManager(layoutManager);
 
+        sendRequest();
         adaptador = new AdaptadorInicio();
-        reciclador.setAdapter(adaptador);
+        //reciclador.setAdapter(adaptador);
+        seleccionarAccion();
         return view;
     }
+
+    public void sendRequest(){
+        JsonArrayRequest req = new JsonArrayRequest(REQUEST_CATEGORIAS,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        adaptador = new AdaptadorInicio(getContext(),parseJsonToAcciones(response));
+                        reciclador.setAdapter(adaptador);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AppController.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(req);
+    }
+
+    public List<AccionesDto> parseJsonToAcciones(JSONArray response){
+        List<AccionesDto> listaDeAcciones = new ArrayList<AccionesDto>();
+        try {
+            for (int i = 0; i < response.length(); i++) {
+
+                JSONObject acciones = (JSONObject) response.get(i);
+
+
+                AccionesDto accionesDto = new AccionesDto();
+                accionesDto.setIdAccion(acciones.getString("idAccion"));
+                accionesDto.setNombre(acciones.getString("nombre"));
+                accionesDto.setDescripcion(acciones.getString("descripcion"));
+                accionesDto.setEstatus(acciones.getBoolean("estatus"));
+
+                listaDeAcciones.add(accionesDto);
+            }
+            Toast.makeText(getActivity().getApplicationContext(), "Tamaño de datos: "+listaDeAcciones.size(), Toast.LENGTH_SHORT).show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Error: " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
+        return listaDeAcciones;
+    }
+
+    public void seleccionarAccion(){
+        reciclador.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int position) {
+
+                        Toast.makeText(getActivity(), adaptador.getItems().get(position).getNombre()+" IdAccion "+adaptador.getItems().get(position).getIdAccion(), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getActivity().getApplicationContext(),NegociosRecyclerView.class);
+                        intent.putExtra("idAccion",adaptador.getItems().get(position).getIdAccion());
+                        startActivity(intent);
+                    }
+                })
+        );
+    }
+
+
 
 }

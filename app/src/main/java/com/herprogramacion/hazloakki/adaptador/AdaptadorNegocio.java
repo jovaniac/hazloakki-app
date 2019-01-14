@@ -13,13 +13,12 @@ import com.herprogramacion.hazloakki.modelo.NegocioDto;
 
 import java.util.List;
 
-/**
- * Adaptador con un cursor para poblar la lista de alquileres desde SQLite
- */
+
 public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.ViewHolder> {
     private final Context contexto;
     private List<NegocioDto> listaNegocios;
     private OnItemClickListener escucha;
+
 
     public interface OnItemClickListener {
         public void onClick(ViewHolder holder, String idAlquiler);
@@ -28,19 +27,29 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
     public class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Referencias UI
-        public TextView viewNombre;
-        public TextView viewUbicacion;
+        public TextView viewNombreNegocio;
+        public TextView viewCalificacion;
+        public TextView viewCategoria;
+        public TextView viewDistancia;
+        public TextView viewHorario;
+        public TextView viewDireccion;
+        public TextView viewNumOfertas;
+        public TextView viewUltimoComentario;
         public TextView viewDescripcion;
-        public TextView viewClasificacion;
-        public ImageView viewFoto;
+
 
         public ViewHolder(View v) {
             super(v);
-            viewNombre = (TextView) v.findViewById(R.id.nombre);
-            viewUbicacion = (TextView) v.findViewById(R.id.ubicacion);
-            viewDescripcion = (TextView) v.findViewById(R.id.descripcion);
-            viewClasificacion = (TextView) v.findViewById(R.id.clasificacion);
-            viewFoto = (ImageView) v.findViewById(R.id.foto);
+            viewNombreNegocio = (TextView) v.findViewById(R.id.nombreNegocio);
+            viewCalificacion = (TextView) v.findViewById(R.id.calificacion);
+            viewCategoria = (TextView) v.findViewById(R.id.categoria);
+            viewDistancia = (TextView) v.findViewById(R.id.distancia);
+            viewHorario = (TextView) v.findViewById(R.id.horario);
+            viewDireccion = (TextView) v.findViewById(R.id.direccion);
+            viewNumOfertas = (TextView) v.findViewById(R.id.ofertasNegocio);
+            viewUltimoComentario = (TextView) v.findViewById(R.id.comentarioCorto);
+            viewDescripcion = (TextView) v.findViewById(R.id.descripcionNegocio);
+
             v.setOnClickListener(this);
         }
 
@@ -88,16 +97,31 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
 
         // Asignación UI
         s = listaNegocios.get(position).getNombre();
-        holder.viewNombre.setText(s);
+        holder.viewNombreNegocio.setText(s);
 
-        s = String.valueOf(listaNegocios.get(position).getNombre());
-        holder.viewUbicacion.setText(s);
+        s = String.valueOf(listaNegocios.get(position).getCalificacion());
+        holder.viewCalificacion.setText(s);
 
-        s = listaNegocios.get(position).getDescripcion();
+        s = String.valueOf(listaNegocios.get(position).getCategoria());
+        holder.viewCategoria.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getDistancia());
+        holder.viewDistancia.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getHorario());
+        holder.viewHorario.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getDomicilio());
+        holder.viewDireccion.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getNumeroOfertas());
+        holder.viewNumOfertas.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getUltimoComentario());
+        holder.viewUltimoComentario.setText(s);
+
+        s =String.valueOf(listaNegocios.get(position).getDescripcion());
         holder.viewDescripcion.setText(s);
-
-        s =String.valueOf(listaNegocios.get(position).getCalle());
-        holder.viewClasificacion.setText(s);
 
        // s = items.getString(ConsultaAlquileres.URL);
         //Glide.with(contexto).load(s).centerCrop().into(holder.viewFoto);

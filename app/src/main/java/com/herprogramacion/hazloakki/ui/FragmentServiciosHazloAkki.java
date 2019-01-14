@@ -18,11 +18,6 @@ import com.herprogramacion.hazloakki.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Fragmento que contiene otros fragmentos anidados para representar las categorías
- * de comidas
- */
 public class FragmentServiciosHazloAkki extends Fragment {
     private AppBarLayout appBarLayout;
     private TabLayout tabLayout;
@@ -60,10 +55,11 @@ public class FragmentServiciosHazloAkki extends Fragment {
 
     private void poblarViewPager(ViewPager viewPager) {
         AdaptadorSecciones adapter = new AdaptadorSecciones(getFragmentManager());
-        adapter.addFragment(FragmentTabServicios.nuevaInstancia(0), getString(R.string.titulo_tab_negocios));
+
+        adapter.addFragment(FragmentoInicio.nuevaInstancia(0), getString(R.string.titulo_tab_negocios));
         adapter.addFragment(FragmentTabServicios.nuevaInstancia(1), getString(R.string.titulo_tab_eventos));
-        adapter.addFragment(FragmentTabServicios.nuevaInstancia(2), getString(R.string.titulo_tab_perfil));
-        //adapter.addFragment(FragmentoCategoria.nuevaInstancia(3), getString(R.string.titulo_tab_social));
+        adapter.addFragment(FragmentTabServicios.nuevaInstancia(2), getString(R.string.titulo_tab_social));
+
         viewPager.setAdapter(adapter);
 
  /*       SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());

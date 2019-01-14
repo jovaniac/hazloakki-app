@@ -12,6 +12,7 @@ public class NegocioDto {
 	private String idNegocio;
 	private String nombre;
 	private Integer idCategoria; // revisar este campo
+	private String categoria;
 	private String email;
 	private String descripcion;
 	private String telefono;
@@ -34,6 +35,9 @@ public class NegocioDto {
 	private String sitioWeb;
 	private List<HorarioNegocioDto> horarioNegocio = new ArrayList<>();
 	private String distancia;
+	private String calificacion;
+	private Integer numeroOfertas;
+	private String ultimoComentario;
 
 	public String getIdNegocio() {
 		return idNegocio;
@@ -234,7 +238,37 @@ public class NegocioDto {
 	public void setDistancia(String distancia) {
 		this.distancia = distancia;
 	}
-	
-	
 
+
+	public String getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(String calificacion) {
+		this.calificacion = calificacion;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public Integer getNumeroOfertas() {
+		return numeroOfertas;
+	}
+
+	public void setNumeroOfertas(Integer numeroOfertas) {
+		this.numeroOfertas = numeroOfertas;
+	}
+
+	public String getUltimoComentario() {
+		return ultimoComentario;
+	}
+
+	public void setUltimoComentario(String ultimoComentario) {
+		this.ultimoComentario = ultimoComentario;
+	}
 }

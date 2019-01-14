@@ -6,7 +6,6 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.herprogramacion.hazloakki.ui.FragmentoCategoria;
 import com.android.volley.Response;
 
 import org.json.JSONException;
