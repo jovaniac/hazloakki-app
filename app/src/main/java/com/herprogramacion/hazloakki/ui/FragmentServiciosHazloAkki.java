@@ -1,7 +1,10 @@
 package com.herprogramacion.hazloakki.ui;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +16,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.herprogramacion.hazloakki.R;
 
 import java.util.ArrayList;
@@ -29,6 +39,7 @@ public class FragmentServiciosHazloAkki extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragmento_paginado, container, false);
 
         if (savedInstanceState == null) {
@@ -40,6 +51,7 @@ public class FragmentServiciosHazloAkki extends Fragment {
 
             tabLayout.setupWithViewPager(viewPager);
         }
+
 
         return view;
     }
@@ -118,5 +130,6 @@ public class FragmentServiciosHazloAkki extends Fragment {
             return titulosFragmentos.get(position);
         }
     }
+
 
 }

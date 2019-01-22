@@ -1,31 +1,20 @@
 package com.herprogramacion.hazloakki.ui;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.pm.PackageManager;
+
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
+
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,23 +22,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.ActivityRecognition;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.modelo.AccionesDto;
-import com.herprogramacion.hazloakki.modelo.Constants;
 import com.herprogramacion.hazloakki.network.AppController;
+
 import com.herprogramacion.hazloakki.utils.RecyclerItemClickListener;
 
 
@@ -61,9 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
 public class FragmentoInicio extends Fragment {
+
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
     private AdaptadorInicio adaptador;
@@ -71,13 +52,12 @@ public class FragmentoInicio extends Fragment {
     private String TAG = FragmentTabServicios.class.getSimpleName();
     private Gson gson = new Gson();
     private static final String INDICE_SECCION = "com.restaurantericoparico.FragmentoCategoriasTab.extra.INDICE_SECCION";
-    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-
-
-
-
+    private static String latitudFragment;
+    private static String longitudFragment;
+    private FusedLocationProviderClient mFusedLocationClient;
 
     public FragmentoInicio() {
+
     }
 
     public static FragmentoInicio nuevaInstancia(int indiceSeccion) {
@@ -88,6 +68,7 @@ public class FragmentoInicio extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,17 +81,36 @@ public class FragmentoInicio extends Fragment {
         sendRequest();
         adaptador = new AdaptadorInicio();
         //reciclador.setAdapter(adaptador);
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        latitudFragment = String.valueOf(location.getLatitude());
+                        longitudFragment = String.valueOf(location.getLongitude());
+                    }
+                })
+                .addOnFailureListener(getActivity(), new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity().getApplicationContext(),"onFailure...", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
         seleccionarAccion();
+
         return view;
     }
 
-    public void sendRequest(){
+    public void sendRequest() {
         JsonArrayRequest req = new JsonArrayRequest(REQUEST_CATEGORIAS,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
-                        adaptador = new AdaptadorInicio(getContext(),parseJsonToAcciones(response));
+                        adaptador = new AdaptadorInicio(getContext(), parseJsonToAcciones(response));
                         reciclador.setAdapter(adaptador);
 
                     }
@@ -126,7 +126,7 @@ public class FragmentoInicio extends Fragment {
         AppController.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(req);
     }
 
-    public List<AccionesDto> parseJsonToAcciones(JSONArray response){
+    public List<AccionesDto> parseJsonToAcciones(JSONArray response) {
         List<AccionesDto> listaDeAcciones = new ArrayList<AccionesDto>();
         try {
             for (int i = 0; i < response.length(); i++) {
@@ -142,7 +142,7 @@ public class FragmentoInicio extends Fragment {
 
                 listaDeAcciones.add(accionesDto);
             }
-            Toast.makeText(getActivity().getApplicationContext(), "Tamaño de datos: "+listaDeAcciones.size(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Tamaño de datos: " + listaDeAcciones.size(), Toast.LENGTH_SHORT).show();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -153,22 +153,25 @@ public class FragmentoInicio extends Fragment {
         return listaDeAcciones;
     }
 
-    public void seleccionarAccion(){
+    public void seleccionarAccion() {
         reciclador.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View v, int position) {
 
-                        Toast.makeText(getActivity(), adaptador.getItems().get(position).getNombre()+" IdAccion "+adaptador.getItems().get(position).getIdAccion(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"onSuccess...latitud: "+latitudFragment + " Longitud: "+longitudFragment, Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(getActivity().getApplicationContext(),NegociosRecyclerView.class);
-                        intent.putExtra("idAccion",adaptador.getItems().get(position).getIdAccion());
+                        //Toast.makeText(getActivity(), adaptador.getItems().get(position).getNombre() + " IdAccion " + adaptador.getItems().get(position).getIdAccion(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity().getApplicationContext(), NegociosRecyclerView.class);
+                        intent.putExtra("idAccion", adaptador.getItems().get(position).getIdAccion());
+                        intent.putExtra("latitud",latitudFragment);
+                        intent.putExtra("longitud",longitudFragment);
+                        intent.putExtra("distancia",1);
+                        intent.putExtra("estatus",true);
                         startActivity(intent);
                     }
                 })
         );
     }
-
-
 
 }

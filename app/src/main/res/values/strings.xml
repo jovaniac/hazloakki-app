@@ -11,7 +11,7 @@
     <string name="item_categorias">HazloAkki App</string>
     <string name="item_configuracion">Configuración</string>
 
-    <string name="titulo_comidas_populares">Qué deseas hacer HOY?</string>
+    <string name="accion_hoy">QUÉ DECEAS HACER HOY?</string>
 
     <string name="titulo_tab_platillos">PLATILLOS</string>
     <string name="titulo_tab_eventos">OFERTAS Y PROMOCIONEA</string>
@@ -36,4 +36,12 @@
     <string name="title_section2">Tablets</string>
     <string name="title_section3">Portátiles</string>
 
+    <string name="no_location_detected">
+        No location detected. Make sure location is enabled on the device.
+    </string>
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+
+    <string name="settings">Settings</string>
 </resources>

@@ -1,14 +1,22 @@
 package com.herprogramacion.hazloakki.ui;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,10 +29,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 
 import com.herprogramacion.hazloakki.adaptador.AdaptadorNegocio;
+import com.herprogramacion.hazloakki.modelo.BuildConfig;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import com.herprogramacion.hazloakki.network.AppController;
 
@@ -90,9 +102,17 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
             Intent intent  = getIntent();
 
             String idAccion = "";
+            String latitud;
+            String longitud;
+            String distancia;
+            Boolean estatus;
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 idAccion =String.valueOf(bundle.get("idAccion"));
+                latitud =String.valueOf(bundle.get("idAccion"));
+                longitud =String.valueOf(bundle.get("idAccion"));
+                distancia =String.valueOf(bundle.get("idAccion"));
+                estatus =String.valueOf(bundle.get("idAccion"));
             }
 
             Map<String, String> params = new HashMap<String, String>();
@@ -234,4 +254,6 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
         }
         return listNegocio;
     }
+
+
 }
