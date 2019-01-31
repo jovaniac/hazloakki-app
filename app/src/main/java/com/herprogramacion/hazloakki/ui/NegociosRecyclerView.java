@@ -55,7 +55,7 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private AdaptadorNegocio adaptadorNegocio;
-    private String REQUEST_NEGOCIOS = "http://192.168.0.7:8086/api/v1/negocios/acciones/";
+    private String REQUEST_NEGOCIOS = "http://192.168.0.3:8086/api/v1/negocios/acciones/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
     private static AdaptadorNegocio.OnItemClickListener escucha;
@@ -100,24 +100,19 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
         try {
         Gson gson = new Gson();
             Intent intent  = getIntent();
-
-            String idAccion = "";
-            String latitud;
-            String longitud;
-            String distancia;
-            Boolean estatus;
-            Bundle bundle = getIntent().getExtras();
-            if (bundle != null) {
-                idAccion =String.valueOf(bundle.get("idAccion"));
-                latitud =String.valueOf(bundle.get("idAccion"));
-                longitud =String.valueOf(bundle.get("idAccion"));
-                distancia =String.valueOf(bundle.get("idAccion"));
-                estatus =String.valueOf(bundle.get("idAccion"));
-            }
-
             Map<String, String> params = new HashMap<String, String>();
 
-            params.put("idAccion", idAccion);
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                params.put("idAccion", String.valueOf(bundle.get("idAccion")));
+                params.put("latitud", String.valueOf(bundle.get("latitud")));
+                params.put("longitud", String.valueOf(bundle.get("longitud")));
+                params.put("distancia", String.valueOf(bundle.get("distancia")));
+                params.put("estatus", String.valueOf(Boolean.parseBoolean(String.valueOf(bundle.get("estatus")))));
+            }
+
+            Toast.makeText(getApplicationContext(), "Data Param - accion:"+params.get("idAccion")+ " latitud: "+params.get("latitud") + " longitud: "+params.get("longitud")+ " Distancia: "+params.get("distancia")+ " Estatus: "+params.get("estatus"),Toast.LENGTH_LONG).show();
+
 
             sendRequestJsonPost(REQUEST_NEGOCIOS,params);
 
@@ -169,8 +164,21 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
     public  void sendRequestJsonPost(String url, final Map<String, String> params ) {
 
         String idAccion = params.get("idAccion");
+        String latitud= params.get("latitud");
+        String longitud= params.get("longitud");
+        String distancia= params.get("distancia");
+        Boolean estatus = Boolean.parseBoolean(params.get("estatus"));
+
         StringBuilder urlMoreParameters = new StringBuilder(url);
         urlMoreParameters.append(idAccion);
+        urlMoreParameters.append("/");
+        urlMoreParameters.append(latitud);
+        urlMoreParameters.append("/");
+        urlMoreParameters.append(longitud);
+        urlMoreParameters.append("/");
+        urlMoreParameters.append(distancia);
+        urlMoreParameters.append("/");
+        urlMoreParameters.append(estatus);;
         try {
 
            JsonRequest<JSONArray> request  = new JsonRequest<JSONArray>(Request.Method.GET, urlMoreParameters.toString(), null,
@@ -235,7 +243,12 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
                 negocioDto.setEstatus(negocio.getBoolean("estatus"));
                 negocioDto.setDomicilio(negocio.getString("domicilio"));
                 negocioDto.setSitioWeb(negocio.getString("sitioWeb"));
-              /*  negocioDto.setCalificacion(negocio.getString("calificacion"));
+                negocioDto.setCategoria(negocio.getString("nombreCategoria"));
+                negocioDto.setCalificacion(negocio.getString("calificacion"));
+                negocioDto.setDistancia(negocio.getString("distancia"));
+                negocioDto.setNumeroOfertas(negocio.getInt("numeroOfertas"));
+                negocioDto.setHorario(negocio.getString("horarioDia"));
+              /*negocioDto.setCalificacion(negocio.getString("calificacion"));
                 negocioDto.setDistancia(negocio.getString("distancia"));
                 negocioDto.setHorario(negocio.getString("horario"));
                 negocioDto.setCategoria(negocio.getString("categoria"));

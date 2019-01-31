@@ -21,29 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:text="latitud"
-        android:id="@+id/latitud"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/accentColor"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/color_light" />
-
-    <TextView
-        android:text="longitud"
-        android:id="@+id/longitud"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/accentColor"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/color_light" />
     <RelativeLayout
         android:id="@+id/contenedor_principal"
         android:layout_width="match_parent"

@@ -47,7 +47,6 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
             viewHorario = (TextView) v.findViewById(R.id.horario);
             viewDireccion = (TextView) v.findViewById(R.id.direccion);
             viewNumOfertas = (TextView) v.findViewById(R.id.ofertasNegocio);
-            viewUltimoComentario = (TextView) v.findViewById(R.id.comentarioCorto);
             viewDescripcion = (TextView) v.findViewById(R.id.descripcionNegocio);
 
             v.setOnClickListener(this);
@@ -116,9 +115,6 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
 
         s =String.valueOf(listaNegocios.get(position).getNumeroOfertas());
         holder.viewNumOfertas.setText(s);
-
-        s =String.valueOf(listaNegocios.get(position).getUltimoComentario());
-        holder.viewUltimoComentario.setText(s);
 
         s =String.valueOf(listaNegocios.get(position).getDescripcion());
         holder.viewDescripcion.setText(s);

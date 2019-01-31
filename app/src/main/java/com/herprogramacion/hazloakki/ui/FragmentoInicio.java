@@ -2,20 +2,19 @@ package com.herprogramacion.hazloakki.ui;
 
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 
 import android.location.Location;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -48,7 +47,7 @@ public class FragmentoInicio extends Fragment {
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
     private AdaptadorInicio adaptador;
-    private String REQUEST_CATEGORIAS = "http://192.168.0.7:8091/api/v1/acciones";
+    private String REQUEST_CATEGORIAS = "http://192.168.0.3:8091/api/v1/acciones";
     private String TAG = FragmentTabServicios.class.getSimpleName();
     private Gson gson = new Gson();
     private static final String INDICE_SECCION = "com.restaurantericoparico.FragmentoCategoriasTab.extra.INDICE_SECCION";
@@ -162,16 +161,53 @@ public class FragmentoInicio extends Fragment {
                         Toast.makeText(getActivity(),"onSuccess...latitud: "+latitudFragment + " Longitud: "+longitudFragment, Toast.LENGTH_LONG).show();
 
                         //Toast.makeText(getActivity(), adaptador.getItems().get(position).getNombre() + " IdAccion " + adaptador.getItems().get(position).getIdAccion(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity().getApplicationContext(), NegociosRecyclerView.class);
+                       /* Intent intent = new Intent(getActivity().getApplicationContext(), NegociosRecyclerView.class);
                         intent.putExtra("idAccion", adaptador.getItems().get(position).getIdAccion());
                         intent.putExtra("latitud",latitudFragment);
                         intent.putExtra("longitud",longitudFragment);
                         intent.putExtra("distancia",1);
                         intent.putExtra("estatus",true);
-                        startActivity(intent);
+
+                        startActivity(intent);*/
+
+                        Fragment fragmentoGenerico = null;
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentoGenerico = new FragmentoNegocioDetalle();
+
+                        if (fragmentoGenerico != null) {
+                            fragmentManager.beginTransaction().replace(R.id.contenedor_principal, fragmentoGenerico).commit();
+                        }
+
+
                     }
                 })
         );
     }
+
+    /*
+     private void seleccionarItem(MenuItem itemDrawer) {
+        Fragment fragmentoGenerico = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        switch (itemDrawer.getItemId()) {
+            case R.id.item_inicio:
+                fragmentoGenerico = new FragmentoInicio();
+                break;
+            case R.id.item_cuenta:
+                fragmentoGenerico = new FragmentoCuenta();
+                break;
+            case R.id.item_modulos:
+                fragmentoGenerico = new FragmentServiciosHazloAkki();
+                break;
+            case R.id.item_configuracion:
+                startActivity(new Intent(this, ActividadConfiguracion.class));
+                break;
+        }
+
+        if (fragmentoGenerico != null) {
+            fragmentManager.beginTransaction().replace(R.id.contenedor_principal, fragmentoGenerico).commit();
+        }
+     */
 
 }
