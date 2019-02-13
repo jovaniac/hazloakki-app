@@ -187,7 +187,7 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
                         public void onResponse(JSONArray response) {
                             //Toast.makeText(ctx, "Response toString: " + response.toString(), Toast.LENGTH_LONG).show();
 
-                            adaptadorNegocio = new AdaptadorNegocio(getApplicationContext(),parseJsonNegocio(response));
+//                            adaptadorNegocio = new AdaptadorNegocio(getApplicationContext(),parseJsonNegocio(response));
                             listaUI.setAdapter(adaptadorNegocio);
                         }
                     }, new Response.ErrorListener() {
@@ -248,12 +248,6 @@ public class NegociosRecyclerView extends AppCompatActivity implements Adaptador
                 negocioDto.setDistancia(negocio.getString("distancia"));
                 negocioDto.setNumeroOfertas(negocio.getInt("numeroOfertas"));
                 negocioDto.setHorario(negocio.getString("horarioDia"));
-              /*negocioDto.setCalificacion(negocio.getString("calificacion"));
-                negocioDto.setDistancia(negocio.getString("distancia"));
-                negocioDto.setHorario(negocio.getString("horario"));
-                negocioDto.setCategoria(negocio.getString("categoria"));
-            */
-
 
                 listNegocio.add(negocioDto);
             }

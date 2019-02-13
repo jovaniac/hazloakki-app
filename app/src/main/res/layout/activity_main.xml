@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    tools:context="com.loopwiki.coordinatelayoutexamples.MainActivity">
+
+    <Button
+        android:id="@+id/buttonToolbarFab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinate Layout With Toolbar and fab" />
+    <Button
+        android:id="@+id/buttonCollapsingToolbarFab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinate Layout With Collapsing toolbar ,Fab " />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonToolbarTabs"
+        android:text="Coordinate Layout With Toolbar and tabs" />
+    <Button
+        android:id="@+id/buttonCollapsingToolbarTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coordinate Layout With Collapsing toolbar and Tabs " />
+</LinearLayout>

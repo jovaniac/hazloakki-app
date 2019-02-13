@@ -1,12 +1,14 @@
 package com.herprogramacion.hazloakki.adaptador;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
@@ -54,15 +56,15 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
 
         @Override
         public void onClick(View view) {
-            escucha.onClick(this, obtenerIdAlquiler(getAdapterPosition()));
+            escucha.onClick(this, obtenerNegocioId(getAdapterPosition()));
         }
     }
 
-    private String obtenerIdAlquiler(int posicion) {
+    private String obtenerNegocioId(int posicion) {
         if (listaNegocios != null) {
             //if (items.moveToPosition(posicion)) {
             if (!listaNegocios.isEmpty()) {
-                return listaNegocios.get(posicion).toString();
+                return listaNegocios.get(posicion).getIdNegocio();
             }
         }
 
@@ -75,11 +77,6 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
 
     }
 
-    public AdaptadorNegocio(Context contexto, List<NegocioDto> listaNegocios) {
-        this.contexto = contexto;
-        this.listaNegocios = listaNegocios;
-
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -132,4 +129,12 @@ public class AdaptadorNegocio extends RecyclerView.Adapter<AdaptadorNegocio.View
         return 0;
     }
 
+
+    public List<NegocioDto> getListaNegocios() {
+        return listaNegocios;
+    }
+
+    public void setListaNegocios(List<NegocioDto> listaNegocios) {
+        this.listaNegocios = listaNegocios;
+    }
 }

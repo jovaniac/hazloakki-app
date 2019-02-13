@@ -42,7 +42,7 @@ public class FragmentTabServicios extends Fragment {
 
     // This tag will be used to cancel the request
     private String tag_string_req = "string_req";
-    private String REQUEST_CATEGORIAS = "http://192.168.0.7:8091/api/v1/acciones";
+    private String REQUEST_CATEGORIAS = "http://192.168.0.3:8091/api/v1/acciones";
     private String TAG = FragmentTabServicios.class.getSimpleName();
     private Gson gson = new Gson();
     private String resultCategorias;

@@ -20,4 +20,14 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusBar" parent="AppTheme.NoActionBar">
+        <item name="windowActionBarOverlay">false</item>
+    </style>
+
 </resources>

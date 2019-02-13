@@ -50,6 +50,11 @@
             android:theme="@style/Base.AppTheme2">
         </activity>
 
+        <activity
+            android:name="com.herprogramacion.hazloakki.ui.CollapsingToolbarTabs"
+            android:label="Musica"
+            android:theme="@style/AppTheme.TransparentStatusBar"></activity>
+
         <provider
             android:name="com.herprogramacion.hazloakki.provider.ProviderApartamentos"
             android:authorities="com.herprogramacion.hazloakki"
