@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 
 import com.herprogramacion.hazloakki.adaptador.DemoAdapter;
 import com.herprogramacion.hazloakki.modelo.DemoItem;
-import com.herprogramacion.hazloakki.modelo.Space;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
 
 
 public class DemoFragment extends Fragment {
@@ -44,7 +44,7 @@ public class DemoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_demo, container, false);
         RecyclerView recyclerViewDemo = view.findViewById(R.id.recyclerViewDemo);
         recyclerViewDemo.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewDemo.addItemDecoration(new Space(20, 1));
+        recyclerViewDemo.addItemDecoration(new EspacioInfoNegocio(20));
         recyclerViewDemo.setAdapter(new DemoAdapter(feedItems(), getContext()));
         return view;
     }

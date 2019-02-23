@@ -53,7 +53,7 @@
         <activity
             android:name="com.herprogramacion.hazloakki.ui.CollapsingToolbarTabs"
             android:label="Musica"
-            android:theme="@style/AppTheme.TransparentStatusBar"></activity>
+            android:theme="@style/Theme.ConNavigationDrawer"></activity>
 
         <provider
             android:name="com.herprogramacion.hazloakki.provider.ProviderApartamentos"

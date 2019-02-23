@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import com.herprogramacion.hazloakki.R;
 
-import com.herprogramacion.hazloakki.ui.spash.FragmentoOfertasNegocio;
 import com.squareup.picasso.Picasso;
 
 public class CollapsingToolbarTabs extends AppCompatActivity {
@@ -38,17 +37,20 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
 
-        FragmentoOfertasNegocio fragmentoOfertasNegocio = new FragmentoOfertasNegocio();
+        //FragmentoOfertasNegocio fragmentoOfertasNegocio = new FragmentoOfertasNegocio();
 
         Bundle bundle = getIntent().getExtras();
             if(!bundle.isEmpty()){
 
-                fragmentoOfertasNegocio.setIdNegocio(String.valueOf(bundle.get("idNegocio")));
+                //fragmentoOfertasNegocio.setIdNegocio(String.valueOf(bundle.get("idNegocio")));
             }
 
 
-        mViewPagerAdapter.addFragment(fragmentoOfertasNegocio, "Ofertas");
-        mViewPagerAdapter.addFragment(FragmentoInicio.nuevaInstancia(0), "Info");
+        //mViewPagerAdapter.addFragment(fragmentoOfertasNegocio, "Ofertas");
+
+        FragmentoInfoNegocio fragmentoInfoNegocio  =new FragmentoInfoNegocio();
+
+        mViewPagerAdapter.addFragment(fragmentoInfoNegocio, "Info");
 
 
         mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "Servicios");

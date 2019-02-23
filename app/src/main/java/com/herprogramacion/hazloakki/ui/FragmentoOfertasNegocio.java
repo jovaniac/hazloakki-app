@@ -1,4 +1,4 @@
-package com.herprogramacion.hazloakki.ui.spash;
+package com.herprogramacion.hazloakki.ui;
 
 import android.content.Context;
 import android.content.Intent;

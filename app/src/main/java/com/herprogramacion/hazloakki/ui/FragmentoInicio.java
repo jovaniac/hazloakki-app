@@ -169,8 +169,8 @@ public class FragmentoInicio extends Fragment {
 
                         Bundle bundle=new Bundle();
                             bundle.putString("idAccion", adaptador.getItems().get(position).getIdAccion());
-                            bundle.putString("latitud", latitudFragment);
-                            bundle.putString("longitud", longitudFragment);
+                            bundle.putString("latitud", "19.3277");
+                            bundle.putString("longitud", "-99.1517");
                             bundle.putInt("distancia", 1);
                             bundle.putBoolean("estatus", true);
 
