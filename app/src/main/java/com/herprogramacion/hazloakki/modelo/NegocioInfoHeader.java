@@ -4,15 +4,18 @@ package com.herprogramacion.hazloakki.modelo;
  * Created by amary on 25-03-2018.
  */
 //Object of Header item
-public class Header extends RecyclerViewItem{
+public class NegocioInfoHeader extends RecyclerViewItem{
+
+    private NegocioDto negocioDto;
     private String HeaderText;
     private String Category;
     private String ImageUrl;
 
-    public Header(String headerText, String category, String imageUrl) {
+    public NegocioInfoHeader(String headerText, String category, String imageUrl, NegocioDto negocioDto) {
         HeaderText = headerText;
         Category = category;
         ImageUrl = imageUrl;
+        this.negocioDto = negocioDto;
     }
 
     public String getHeaderText() {
@@ -37,5 +40,13 @@ public class Header extends RecyclerViewItem{
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    public NegocioDto getNegocioDto() {
+        return negocioDto;
+    }
+
+    public void setNegocioDto(NegocioDto negocioDto) {
+        this.negocioDto = negocioDto;
     }
 }

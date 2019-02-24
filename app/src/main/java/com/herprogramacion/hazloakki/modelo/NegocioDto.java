@@ -271,4 +271,39 @@ public class NegocioDto {
 	public void setUltimoComentario(String ultimoComentario) {
 		this.ultimoComentario = ultimoComentario;
 	}
+
+	@Override
+	public String toString() {
+		return "NegocioDto{" +
+				"idNegocio='" + idNegocio + '\'' +
+				", nombre='" + nombre + '\'' +
+				", idCategoria=" + idCategoria +
+				", categoria='" + categoria + '\'' +
+				", email='" + email + '\'' +
+				", descripcion='" + descripcion + '\'' +
+				", telefono='" + telefono + '\'' +
+				", domicilio='" + domicilio + '\'' +
+				", latitud=" + latitud +
+				", longitud=" + longitud +
+				", idCuenta='" + idCuenta + '\'' +
+				", codigoPostal='" + codigoPostal + '\'' +
+				", delegacion='" + delegacion + '\'' +
+				", colonia='" + colonia + '\'' +
+				", calle='" + calle + '\'' +
+				", numeroExterior='" + numeroExterior + '\'' +
+				", estatus=" + estatus +
+				", horario='" + horario + '\'' +
+				", responsable='" + responsable + '\'' +
+				", serviciosList=" + serviciosList +
+				", metodoPagoList=" + metodoPagoList +
+				", tipoTarjetaList=" + tipoTarjetaList +
+				", idAccion=" + idAccion +
+				", sitioWeb='" + sitioWeb + '\'' +
+				", horarioNegocio=" + horarioNegocio +
+				", distancia='" + distancia + '\'' +
+				", calificacion='" + calificacion + '\'' +
+				", numeroOfertas=" + numeroOfertas +
+				", ultimoComentario='" + ultimoComentario + '\'' +
+				'}';
+	}
 }

@@ -55,7 +55,7 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private AdaptadorNegocio adaptadorNegocio;
-    private String REQUEST_NEGOCIOS = "http://192.168.0.8:8086/api/v1/negocios/acciones/";
+    private String REQUEST_NEGOCIOS = "http://192.168.0.5:8086/api/v1/negocios/acciones/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
 
@@ -226,11 +226,10 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
 
     @Override
     public void onClick(AdaptadorNegocio.ViewHolder holder, String idNegocio) {
-        Toast.makeText(getContext(),"Negocio Seleccionado:"+idNegocio, Toast.LENGTH_LONG).show();
-
 
         Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), CollapsingToolbarTabs.class);
         detalleNegocio.putExtra("idNegocio",idNegocio);
+
 
         startActivity(detalleNegocio);
 

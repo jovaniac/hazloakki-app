@@ -1,7 +1,5 @@
 package com.herprogramacion.hazloakki.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +12,9 @@ import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorInfoNegocio;
 import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
-import com.herprogramacion.hazloakki.modelo.Header;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
+import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
 
@@ -51,10 +51,31 @@ public class FragmentoInfoNegocio extends Fragment {
     //Method to create dummy data
     public List<RecyclerViewItem> createDummyList() {
         List<RecyclerViewItem> recyclerViewItems = new ArrayList<>();
-        Header header = new Header("Welcome To Food Express", "Non-Veg Menu",
-                "https://cdn.pixabay.com/photo/2017/09/30/15/10/pizza-2802332_640.jpg");
+
+        NegocioDto negocioDto = new NegocioDto();
+        negocioDto.setDescripcion("Negocio de Carnitas bien ricas");
+        negocioDto.setCategoria("Restaurante");
+        negocioDto.setNombre("Carnitas Blaikiriña");
+
+        NegocioInfoHeader header = new NegocioInfoHeader("Welcome To Food Express", "Non-Veg Menu",
+                "https://cdn.pixabay.com/photo/2017/09/30/15/10/pizza-2802332_640.jpg",negocioDto);
         //add header
         recyclerViewItems.add(header);
+
+
+        NegocioInfoDireccionDto negocioInfoDireccionDto = new NegocioInfoDireccionDto();
+
+        negocioInfoDireccionDto.setDireccion("Codigo postal + calle + colonia + estado + municipio");
+        negocioInfoDireccionDto.setColonia("Temixco");
+        negocioInfoDireccionDto.setHorario("Abierto Hoy cierra a las 9pm");
+        negocioInfoDireccionDto.setDistancia("0.3 kilometros cerca de ti");
+        negocioInfoDireccionDto.setNumeroOfertasPublicadas("10 ofertas Publicadas");
+
+
+        //add direccion negocio
+        recyclerViewItems.add(negocioInfoDireccionDto);
+
+
         String[] imageUrls = {"https://cdn.pixabay.com/photo/2016/11/18/17/42/barbecue-1836053_640.jpg",
                 "https://cdn.pixabay.com/photo/2016/07/11/03/23/chicken-rice-1508984_640.jpg",
                 "https://cdn.pixabay.com/photo/2017/03/30/08/10/chicken-intestine-2187505_640.jpg",

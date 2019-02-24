@@ -11,7 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
-import com.herprogramacion.hazloakki.modelo.Header;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.R;
 
@@ -23,10 +24,14 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
     List<RecyclerViewItem> recyclerViewItems;
     //Header Item Type
     private static final int HEADER_ITEM = 0;
+
     //Footer Item Type
-    private static final int FOOTER_ITEM = 1;
+    private static final int DIRECCION_NEGOCIO_ITEM = 1;
+
+    //Footer Item Type
+    private static final int FOOTER_ITEM = 2;
     ////Food Item Type
-    private static final int FOOD_ITEM = 2;
+    private static final int FOOD_ITEM = 3;
     Context mContext;
 
     public AdaptadorInfoNegocio(List<RecyclerViewItem> recyclerViewItems, Context mContext) {
@@ -40,9 +45,12 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         View row;
         //Check fot view Type inflate layout according to it
         if (viewType == HEADER_ITEM) {
-            row = inflater.inflate(R.layout.custom_row_header, parent, false);
+            row = inflater.inflate(R.layout.info_negocio_row_header, parent, false);
             return new HeaderHolder(row);
-        } else if (viewType == FOOTER_ITEM) {
+        }else if (viewType == DIRECCION_NEGOCIO_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_row_direccion, parent, false);
+            return new DireccionHolder(row);
+        }else if (viewType == FOOTER_ITEM) {
             row = inflater.inflate(R.layout.custom_row_footer, parent, false);
             return new FooterHolder(row);
         } else if (viewType == FOOD_ITEM) {
@@ -59,13 +67,25 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         //Check holder instance to populate data  according to it
         if (holder instanceof HeaderHolder) {
             HeaderHolder headerHolder = (HeaderHolder) holder;
-            Header header = (Header) recyclerViewItem;
+            NegocioInfoHeader header = (NegocioInfoHeader) recyclerViewItem;
             //set data
-            headerHolder.texViewHeaderText.setText(header.getHeaderText());
-            headerHolder.textViewCategory.setText(header.getCategory());
+            headerHolder.infoNombre.setText(header.getNegocioDto().getNombre());
+            headerHolder.infoDescripcion.setText(header.getNegocioDto().getDescripcion());
+            headerHolder.infoCategoria.setText(header.getNegocioDto().getCategoria());
             Glide.with(mContext).load(header.getImageUrl()).into(headerHolder.imageViewHeader);
 
-        } else if (holder instanceof FooterHolder) {
+        }else if (holder instanceof DireccionHolder) {
+            DireccionHolder footerHolder = (DireccionHolder) holder;
+            NegocioInfoDireccionDto footer = (NegocioInfoDireccionDto) recyclerViewItem;
+            //set data
+            footerHolder.infoDireccion.setText(footer.getDireccion());
+            footerHolder.infoDistancia.setText(footer.getDistancia());
+            footerHolder.infoNumeroOfertasPublicadas.setText(footer.getNumeroOfertasPublicadas());
+            footerHolder.infoColonia.setText(footer.getColonia());
+            Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
+
+        }
+        else if (holder instanceof FooterHolder) {
             FooterHolder footerHolder = (FooterHolder) holder;
             Footer footer = (Footer) recyclerViewItem;
             //set data
@@ -96,7 +116,7 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         //here we can set view type
         RecyclerViewItem recyclerViewItem = recyclerViewItems.get(position);
         //if its header then return header item
-        if (recyclerViewItem instanceof Header)
+        if (recyclerViewItem instanceof NegocioInfoHeader)
             return HEADER_ITEM;
             //if its Footer then return Footer item
         else if (recyclerViewItem instanceof Footer)
@@ -104,6 +124,8 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         //if its FoodItem then return Food item
         else if (recyclerViewItem instanceof FoodItem)
             return FOOD_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoDireccionDto)
+            return DIRECCION_NEGOCIO_ITEM;
         else
             return super.getItemViewType(position);
 
@@ -129,13 +151,37 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
     }
     //header holder
     private class HeaderHolder extends RecyclerView.ViewHolder {
-        TextView texViewHeaderText, textViewCategory;
+        TextView infoNombre;
+        TextView infoDescripcion;
+        TextView infoCategoria;
         ImageView imageViewHeader;
 
         HeaderHolder(View itemView) {
             super(itemView);
-            texViewHeaderText = itemView.findViewById(R.id.texViewHeaderText);
-            textViewCategory = itemView.findViewById(R.id.textViewCategory);
+            infoNombre = itemView.findViewById(R.id.infoNombre);
+            infoDescripcion = itemView.findViewById(R.id.infoDescripcion);
+            infoCategoria = itemView.findViewById(R.id.infoCategoria);
+            imageViewHeader = itemView.findViewById(R.id.imageViewHeader);
+        }
+    }
+
+    //direccion< holder
+    private class DireccionHolder extends RecyclerView.ViewHolder {
+
+        private ImageView imageViewHeader;
+        private TextView infoDireccion;
+        private TextView infoDistancia;
+        private TextView infHorario;
+        private TextView infoNumeroOfertasPublicadas;
+        private TextView infoColonia;
+
+        DireccionHolder(View itemView) {
+            super(itemView);
+            infoDireccion = itemView.findViewById(R.id.infoDireccion);
+            infoDistancia = itemView.findViewById(R.id.infoDistancia);
+            infHorario = itemView.findViewById(R.id.infoHorario);
+            infoNumeroOfertasPublicadas = itemView.findViewById(R.id.infoNumeroOfertasPublicadas);
+            infoColonia = itemView.findViewById(R.id.infoColonia);
             imageViewHeader = itemView.findViewById(R.id.imageViewHeader);
         }
     }
