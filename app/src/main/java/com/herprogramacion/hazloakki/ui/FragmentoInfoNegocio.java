@@ -7,7 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorInfoNegocio;
 import com.herprogramacion.hazloakki.modelo.FoodItem;
@@ -15,13 +22,23 @@ import com.herprogramacion.hazloakki.modelo.Footer;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
+import com.herprogramacion.hazloakki.network.AppController;
 import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentoInfoNegocio extends Fragment {
+
+    private String REQUEST_NEGOCIOS= "http://192.168.0.5:8086/api/v1/negocios/";
+    Gson gsonConvert = new Gson();
+    NegocioDto negocioDtoConDatos = new NegocioDto();
+    RecyclerView recyclerView;
+    AdaptadorInfoNegocio adaptadorInfoNegocio;
 
     public FragmentoInfoNegocio() {
         // Required empty public constructor
@@ -33,43 +50,50 @@ public class FragmentoInfoNegocio extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragmento_info_negocio, container, false);
-        initRecyclerView(view);
+
+        String idNegocio = getArguments().getString("idNegocio");
+
+        adaptadorInfoNegocio = new AdaptadorInfoNegocio(getContext());
+
+       //initRecyclerView(view,idNegocio);
+        recyclerView =  view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //add space item decoration and pass space you want to give
+        recyclerView.addItemDecoration(new EspacioInfoNegocio(20));
+
+        detalleNegocio(idNegocio);
 
         return view;
     }
 
-    public void initRecyclerView(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //add space item decoration and pass space you want to give
-        recyclerView.addItemDecoration(new EspacioInfoNegocio(20));
-        //finally set adapter
-        recyclerView.setAdapter(new AdaptadorInfoNegocio(createDummyList(), getActivity()));
-
-
-    }
     //Method to create dummy data
-    public List<RecyclerViewItem> createDummyList() {
+    public List<RecyclerViewItem> cargarDatosNegocio(NegocioDto negocioDtIn) {
         List<RecyclerViewItem> recyclerViewItems = new ArrayList<>();
 
-        NegocioDto negocioDto = new NegocioDto();
-        negocioDto.setDescripcion("Negocio de Carnitas bien ricas");
-        negocioDto.setCategoria("Restaurante");
-        negocioDto.setNombre("Carnitas Blaikiriña");
 
-        NegocioInfoHeader header = new NegocioInfoHeader("Welcome To Food Express", "Non-Veg Menu",
-                "https://cdn.pixabay.com/photo/2017/09/30/15/10/pizza-2802332_640.jpg",negocioDto);
+        NegocioDto negocioDto = new NegocioDto();
+        negocioDto.setDescripcion(negocioDtoConDatos.getDescripcion());
+        negocioDto.setCategoria(negocioDtoConDatos.getCategoria());
+        negocioDto.setNombre(negocioDtoConDatos.getNombre());
+
+        NegocioInfoHeader header = new NegocioInfoHeader("https://cdn.pixabay.com/photo/2017/09/30/15/10/pizza-2802332_640.jpg",negocioDto);
         //add header
         recyclerViewItems.add(header);
 
 
+        NegocioInfoHeaderDireccion negocioInfoHeaderDireccion = new NegocioInfoHeaderDireccion();
+
+
+        recyclerViewItems.add(negocioInfoHeaderDireccion);
+
+
         NegocioInfoDireccionDto negocioInfoDireccionDto = new NegocioInfoDireccionDto();
 
-        negocioInfoDireccionDto.setDireccion("Codigo postal + calle + colonia + estado + municipio");
-        negocioInfoDireccionDto.setColonia("Temixco");
-        negocioInfoDireccionDto.setHorario("Abierto Hoy cierra a las 9pm");
-        negocioInfoDireccionDto.setDistancia("0.3 kilometros cerca de ti");
-        negocioInfoDireccionDto.setNumeroOfertasPublicadas("10 ofertas Publicadas");
+        negocioInfoDireccionDto.setDireccion(negocioDtoConDatos.getDomicilio());
+        negocioInfoDireccionDto.setColonia(negocioDtoConDatos.getColonia());
+        negocioInfoDireccionDto.setHorario(negocioDtoConDatos.getHorario());
+        negocioInfoDireccionDto.setDistancia(negocioDtoConDatos.getDistancia());
+        negocioInfoDireccionDto.setNumeroOfertasPublicadas(String.valueOf(negocioDtoConDatos.getNumeroOfertas()));
 
 
         //add direccion negocio
@@ -103,4 +127,58 @@ public class FragmentoInfoNegocio extends Fragment {
         return recyclerViewItems;
     }
 
+
+    public void detalleNegocio(String idNegocio) {
+        sendRequestJsonPost(idNegocio);
+    }
+
+    public void sendRequestJsonPost(String idNegocio) {
+
+
+        StringBuilder urlMoreParameters = new StringBuilder(REQUEST_NEGOCIOS);
+        urlMoreParameters.append(idNegocio);
+
+
+        try {
+            JsonRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, urlMoreParameters.toString(), null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    try {
+                        negocioDtoConDatos = gsonConvert.fromJson(response.toString(),NegocioDto.class);
+                            adaptadorInfoNegocio.setRecyclerViewItems(cargarDatosNegocio(negocioDtoConDatos));
+
+                        recyclerView.setAdapter(adaptadorInfoNegocio);
+                        Toast.makeText(getContext(), "Response toString FragmentoInfoNegocio: " +negocioDtoConDatos.toString(), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Toast.makeText(getContext(),
+                            "Error: " + error.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+
+            AppController.getInstance(getContext()).getRequestQueue().add(jsonRequest);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Upps algo inesperado sucedio, vuelve a intentarlo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public NegocioDto getNegocioDtoConDatos() {
+        return negocioDtoConDatos;
+    }
+
+    public void setNegocioDtoConDatos(NegocioDto negocioDtoConDatos) {
+        this.negocioDtoConDatos = negocioDtoConDatos;
+    }
 }

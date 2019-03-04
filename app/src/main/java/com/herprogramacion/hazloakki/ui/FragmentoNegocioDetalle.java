@@ -37,6 +37,7 @@ import com.herprogramacion.hazloakki.network.AppController;
 import com.herprogramacion.hazloakki.ui.FragmentoDirecciones;
 import com.herprogramacion.hazloakki.ui.FragmentoPerfil;
 import com.herprogramacion.hazloakki.ui.FragmentoTarjetas;
+import com.herprogramacion.hazloakki.ui.spash.FullscreenFormActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

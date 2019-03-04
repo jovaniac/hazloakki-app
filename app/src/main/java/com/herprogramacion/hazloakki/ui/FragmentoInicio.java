@@ -48,7 +48,7 @@ public class FragmentoInicio extends Fragment {
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
     private AdaptadorInicio adaptador;
-    private String REQUEST_CATEGORIAS = "http://192.168.0.5:8091/api/v1/acciones";
+    private String REQUEST_ACCIONES = "http://192.168.0.5:8091/api/v1/acciones";
     private String TAG = FragmentTabServicios.class.getSimpleName();
     private Gson gson = new Gson();
     private static final String INDICE_SECCION = "com.restaurantericoparico.FragmentoCategoriasTab.extra.INDICE_SECCION";
@@ -105,7 +105,7 @@ public class FragmentoInicio extends Fragment {
     }
 
     public void sendRequest() {
-        JsonArrayRequest req = new JsonArrayRequest(REQUEST_CATEGORIAS,
+        JsonArrayRequest req = new JsonArrayRequest(REQUEST_ACCIONES,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

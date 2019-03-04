@@ -33,6 +33,8 @@
             android:theme="@style/Theme.ConNavigationDrawer">
         </activity>
 
+        <activity android:name=".ui.spash.FullscreenFormActivity" />
+
         <activity
             android:name="com.herprogramacion.hazloakki.ui.ActividadConfiguracion"
             android:label="@string/titulo_actividad_configuracion"

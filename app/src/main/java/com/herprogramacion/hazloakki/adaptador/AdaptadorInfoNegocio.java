@@ -13,6 +13,7 @@ import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.R;
 
@@ -26,28 +27,45 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
     private static final int HEADER_ITEM = 0;
 
     //Footer Item Type
-    private static final int DIRECCION_NEGOCIO_ITEM = 1;
+    private static final int DIRECCION_NEGOCIO_TITULO_ITEM = 1;
 
     //Footer Item Type
-    private static final int FOOTER_ITEM = 2;
+    private static final int DIRECCION_NEGOCIO_ITEM = 2;
+
+    //Footer Item Type
+    private static final int FOOTER_ITEM = 3;
     ////Food Item Type
-    private static final int FOOD_ITEM = 3;
+    private static final int FOOD_ITEM = 4;
+
+
     Context mContext;
 
-    public AdaptadorInfoNegocio(List<RecyclerViewItem> recyclerViewItems, Context mContext) {
+    public AdaptadorInfoNegocio(Context mContext) {
+        this.mContext = mContext;
+    }
+
+
+  /*  public AdaptadorInfoNegocio(List<RecyclerViewItem> recyclerViewItems, Context mContext) {
         this.recyclerViewItems = recyclerViewItems;
         this.mContext = mContext;
     }
+    */
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View row;
         //Check fot view Type inflate layout according to it
+
         if (viewType == HEADER_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_header, parent, false);
             return new HeaderHolder(row);
-        }else if (viewType == DIRECCION_NEGOCIO_ITEM) {
+
+        } else if (viewType == DIRECCION_NEGOCIO_TITULO_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_direccion_row_header, parent, false);
+            return new AdvertisementHolder(row);
+        }
+        else if (viewType == DIRECCION_NEGOCIO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_direccion, parent, false);
             return new DireccionHolder(row);
         }else if (viewType == FOOTER_ITEM) {
@@ -80,9 +98,8 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             //set data
             footerHolder.infoDireccion.setText(footer.getDireccion());
             footerHolder.infoDistancia.setText(footer.getDistancia());
-            footerHolder.infoNumeroOfertasPublicadas.setText(footer.getNumeroOfertasPublicadas());
             footerHolder.infoColonia.setText(footer.getColonia());
-            Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
+           // Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
 
         }
         else if (holder instanceof FooterHolder) {
@@ -118,14 +135,16 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         //if its header then return header item
         if (recyclerViewItem instanceof NegocioInfoHeader)
             return HEADER_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoHeaderDireccion)
+            return DIRECCION_NEGOCIO_TITULO_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoDireccionDto)
+            return DIRECCION_NEGOCIO_ITEM;
             //if its Footer then return Footer item
         else if (recyclerViewItem instanceof Footer)
             return FOOTER_ITEM;
         //if its FoodItem then return Food item
         else if (recyclerViewItem instanceof FoodItem)
             return FOOD_ITEM;
-        else if(recyclerViewItem instanceof NegocioInfoDireccionDto)
-            return DIRECCION_NEGOCIO_ITEM;
         else
             return super.getItemViewType(position);
 
@@ -168,21 +187,20 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
     //direccion< holder
     private class DireccionHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageViewHeader;
-        private TextView infoDireccion;
-        private TextView infoDistancia;
-        private TextView infHorario;
-        private TextView infoNumeroOfertasPublicadas;
-        private TextView infoColonia;
+        public ImageView imageViewHeader;
+        public TextView infoDireccion;
+        public TextView infoDistancia;
+        public TextView infHorario;
+        public TextView infoColonia;
+        public TextView infoCategoria;
 
-        DireccionHolder(View itemView) {
-            super(itemView);
-            infoDireccion = itemView.findViewById(R.id.infoDireccion);
-            infoDistancia = itemView.findViewById(R.id.infoDistancia);
-            infHorario = itemView.findViewById(R.id.infoHorario);
-            infoNumeroOfertasPublicadas = itemView.findViewById(R.id.infoNumeroOfertasPublicadas);
-            infoColonia = itemView.findViewById(R.id.infoColonia);
-            imageViewHeader = itemView.findViewById(R.id.imageViewHeader);
+        public DireccionHolder(View view) {
+            super(view);
+            infoDireccion = itemView.findViewById(R.id.input_direccion);
+            infoDistancia = itemView.findViewById(R.id.input_distancia);
+            infHorario = itemView.findViewById(R.id.input_horario);
+            infoCategoria = itemView.findViewById(R.id.input_categoria);
+            infoColonia = itemView.findViewById(R.id.input_colonia);
         }
     }
     //footer holder
@@ -196,5 +214,24 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             textViewAuthor = itemView.findViewById(R.id.textViewAuthor);
             imageViewFooter = itemView.findViewById(R.id.imageViewFooter);
         }
+    }
+
+    private class AdvertisementHolder extends RecyclerView.ViewHolder{
+        public ImageView imageViewAdvertisementBanner;
+        public TextView textViewAdvertMessage;
+
+        public AdvertisementHolder(View view){
+            super(view);
+            //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
+            textViewAdvertMessage = (TextView)view.findViewById(R.id.textViewAdvertMessage);
+        }
+    }
+
+    public List<RecyclerViewItem> getRecyclerViewItems() {
+        return recyclerViewItems;
+    }
+
+    public void setRecyclerViewItems(List<RecyclerViewItem> recyclerViewItems) {
+        this.recyclerViewItems = recyclerViewItems;
     }
 }

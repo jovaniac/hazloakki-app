@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
-    tools:context="com.loopwiki.coordinatelayoutexamples.MainActivity">
+    tools:context=".ui.spash.SplasTodoAquiApp">
 
     <Button
         android:id="@+id/buttonToolbarFab"

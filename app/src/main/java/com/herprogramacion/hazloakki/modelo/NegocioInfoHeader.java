@@ -7,32 +7,13 @@ package com.herprogramacion.hazloakki.modelo;
 public class NegocioInfoHeader extends RecyclerViewItem{
 
     private NegocioDto negocioDto;
-    private String HeaderText;
-    private String Category;
     private String ImageUrl;
 
-    public NegocioInfoHeader(String headerText, String category, String imageUrl, NegocioDto negocioDto) {
-        HeaderText = headerText;
-        Category = category;
+    public NegocioInfoHeader(String imageUrl, NegocioDto negocioDto) {
         ImageUrl = imageUrl;
         this.negocioDto = negocioDto;
     }
 
-    public String getHeaderText() {
-        return HeaderText;
-    }
-
-    public void setHeaderText(String headerText) {
-        HeaderText = headerText;
-    }
-
-    public String getCategory() {
-        return Category;
-    }
-
-    public void setCategory(String category) {
-        Category = category;
-    }
 
     public String getImageUrl() {
         return ImageUrl;

@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="220dp">
-
-    <ImageView
-        android:scaleType="centerCrop"
-        android:id="@+id/imageViewHeader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:background="#b53e3b3b"
-        android:layout_height="match_parent"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:layout_gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingTop="5dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-
-
-        <TextView
-            android:id="@+id/infoDireccion"
+        <!--  Direccion Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:text="Categoria"
-            />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Direccion" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/infoDistancia"
+
+        <!--  Distancia Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:text="Distancia"
-             />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_distancia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Distancia" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/infoHorario"
+        <!--  Horario Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:text="Abierto mas horario de cierre al dia de hoy"
-            />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_horario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Horario" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/infoNumeroOfertasPublicadas"
+        <!--  Categoria Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:text="Dirección"
-            />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_categoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Categoria"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/infoColonia"
+        <!--  Categoria Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-            android:text="Colonia"
-            />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_colonia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Colonia"/>
+        </android.support.design.widget.TextInputLayout>
 
-    />
 
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

@@ -11,4 +11,11 @@
     <color name="color_light">#ffffff</color>
 
     <color name="background_header_seccion_inicio">#4B4B4B</color>
+
+    <color name="colorFormMasterHeaderBackground">#DDDDDD</color>
+    <color name="colorFormMasterHeaderText">#000000</color>
+    <color name="colorFormMasterElementBackground">#FFFFFF</color>
+    <color name="colorFormMasterElementTextTitle">#222222</color>
+    <color name="colorFormMasterElementTextValue">#000000</color>
+    <color name="colorFormMasterDivider">#DDDDDD</color>
 </resources>

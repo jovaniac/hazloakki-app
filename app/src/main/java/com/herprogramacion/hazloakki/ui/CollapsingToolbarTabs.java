@@ -31,7 +31,8 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
 
     private String REQUEST_NEGOCIOS= "http://192.168.0.5:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
-    NegocioDto negocioDto = null;
+    private NegocioDto negocioDto = new NegocioDto();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +57,12 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
         NegocioDto negocioDto = null;
         Bundle bundle = getIntent().getExtras();
 
+        Bundle data = new Bundle();//Use bundle to pass data
+
         if (!bundle.isEmpty()) {
-
             Toast.makeText(getApplicationContext(),"Negocio Seleccionado Collapsin:"+bundle.getString("idNegocio"), Toast.LENGTH_LONG).show();
+            data.putString("idNegocio", bundle.getString("idNegocio"));//put string, int, etc in bundle with a key value
 
-            detalleNegocio(bundle.getString("idNegocio"));
         }
 
 
@@ -69,6 +71,9 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
 
 
         FragmentoInfoNegocio fragmentoInfoNegocio = new FragmentoInfoNegocio();
+
+        fragmentoInfoNegocio.setArguments(data);
+
 
         mViewPagerAdapter.addFragment(fragmentoInfoNegocio, "Info");
 
@@ -82,48 +87,6 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
 
         ImageView imageViewMusic = findViewById(R.id.imaViewMusic);
         Picasso.with(this).load("https://cdn.pixabay.com/photo/2015/04/13/13/37/dj-720589_640.jpg").fit().into(imageViewMusic);
-    }
-
-    public void detalleNegocio(String idNegocio) {
-        sendRequestJsonPost(idNegocio);
-    }
-
-    public void sendRequestJsonPost(String idNegocio) {
-
-
-        StringBuilder urlMoreParameters = new StringBuilder(REQUEST_NEGOCIOS);
-        urlMoreParameters.append(idNegocio);
-
-
-        try {
-            JsonRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, urlMoreParameters.toString(), null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-
-                    try {
-                        negocioDto = gsonConvert.fromJson(response.toString(),NegocioDto.class);
-                        Toast.makeText(getApplicationContext(), "Response toString Collapsin: " +negocioDto.toString(), Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + error.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-            });
-
-            AppController.getInstance(getApplicationContext()).getRequestQueue().add(jsonRequest);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Upps algo inesperado sucedio, vuelve a intentarlo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
     }
 
 
