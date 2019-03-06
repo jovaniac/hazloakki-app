@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.R;
@@ -31,11 +33,16 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
 
     //Footer Item Type
     private static final int DIRECCION_NEGOCIO_ITEM = 2;
+    private static final int DATOS_CONTACTO_TITULO_ITEM = 3;
+
+    private static final int DATOS_CONTACTO_ITEM = 4;
 
     //Footer Item Type
-    private static final int FOOTER_ITEM = 3;
+    private static final int FOOTER_ITEM = 5;
     ////Food Item Type
-    private static final int FOOD_ITEM = 4;
+    private static final int FOOD_ITEM = 6;
+
+
 
 
     Context mContext;
@@ -68,14 +75,24 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         else if (viewType == DIRECCION_NEGOCIO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_direccion, parent, false);
             return new DireccionHolder(row);
-        }else if (viewType == FOOTER_ITEM) {
+        }else if (viewType == DATOS_CONTACTO_TITULO_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_contacto_row_header, parent, false);
+            return new ContactoHeaderHolder(row);
+        }
+        else if (viewType == DATOS_CONTACTO_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_row_contacto, parent, false);
+            return new ContactoHolder(row);
+        }
+        else if (viewType == FOOTER_ITEM) {
             row = inflater.inflate(R.layout.custom_row_footer, parent, false);
             return new FooterHolder(row);
-        } else if (viewType == FOOD_ITEM) {
+        }
+        else if (viewType == FOOD_ITEM) {
             row = inflater.inflate(R.layout.custom_row_food, parent, false);
             return new FoodItemHolder(row);
 
         }
+
         return null;
     }
 
@@ -102,14 +119,16 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
            // Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
 
         }
-        else if (holder instanceof FooterHolder) {
+       else if (holder instanceof FooterHolder) {
             FooterHolder footerHolder = (FooterHolder) holder;
             Footer footer = (Footer) recyclerViewItem;
             //set data
             footerHolder.texViewQuote.setText(footer.getQuote());
             footerHolder.textViewAuthor.setText(footer.getAuthor());
             Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewFooter);
+        }
 
+        /*
         } else if (holder instanceof FoodItemHolder) {
             FoodItemHolder foodItemHolder = (FoodItemHolder) holder;
             FoodItem foodItem = (FoodItem) recyclerViewItem;
@@ -124,7 +143,7 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             else
                 foodItemHolder.textViewIsHot.setVisibility(View.GONE);
 
-        }
+        }*/
 
     }
 
@@ -139,12 +158,16 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             return DIRECCION_NEGOCIO_TITULO_ITEM;
         else if(recyclerViewItem instanceof NegocioInfoDireccionDto)
             return DIRECCION_NEGOCIO_ITEM;
-            //if its Footer then return Footer item
+        else if(recyclerViewItem instanceof NegocioInfoHeaderDatosContacto)
+            return DATOS_CONTACTO_TITULO_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoDatosContacto)
+            return DATOS_CONTACTO_ITEM;
         else if (recyclerViewItem instanceof Footer)
             return FOOTER_ITEM;
         //if its FoodItem then return Food item
         else if (recyclerViewItem instanceof FoodItem)
             return FOOD_ITEM;
+
         else
             return super.getItemViewType(position);
 
@@ -203,6 +226,7 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             infoColonia = itemView.findViewById(R.id.input_colonia);
         }
     }
+
     //footer holder
     private class FooterHolder extends RecyclerView.ViewHolder {
         TextView texViewQuote, textViewAuthor;
@@ -224,6 +248,35 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             super(view);
             //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
             textViewAdvertMessage = (TextView)view.findViewById(R.id.textViewAdvertMessage);
+        }
+    }
+
+    private class ContactoHeaderHolder extends RecyclerView.ViewHolder{
+        public ImageView imageViewAdvertisementBanner;
+        public TextView textViewAdvertMessage;
+
+        public ContactoHeaderHolder(View view){
+            super(view);
+            //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
+            textViewAdvertMessage = (TextView)view.findViewById(R.id.datosContacto);
+        }
+    }
+
+    private class ContactoHolder extends RecyclerView.ViewHolder{
+        public ImageView imageViewHeader;
+        public TextView infoSitioWeb;
+        public TextView infoMail;
+        public TextView infTelefonoLocal;
+        public TextView infoTelefonoMovil1;
+        public TextView infoTelefonoMovil2;
+
+        public ContactoHolder(View view){
+            super(view);
+            infoSitioWeb = itemView.findViewById(R.id.input_sitioWeb);
+            infoMail = itemView.findViewById(R.id.input_correo);
+            infTelefonoLocal = itemView.findViewById(R.id.input_telefonoLocal);
+            infoTelefonoMovil1 = itemView.findViewById(R.id.input_telefonoCelular1);
+            infoTelefonoMovil2 = itemView.findViewById(R.id.input_telefonoCelular2);
         }
     }
 

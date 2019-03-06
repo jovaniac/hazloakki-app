@@ -19,9 +19,11 @@ import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorInfoNegocio;
 import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.network.AppController;
@@ -99,6 +101,12 @@ public class FragmentoInfoNegocio extends Fragment {
         //add direccion negocio
         recyclerViewItems.add(negocioInfoDireccionDto);
 
+        NegocioInfoHeaderDatosContacto infoHeaderDatosContacto  =new NegocioInfoHeaderDatosContacto();
+        recyclerViewItems.add(infoHeaderDatosContacto);
+
+        NegocioInfoDatosContacto negocioInfoDatosContacto = new NegocioInfoDatosContacto();
+        recyclerViewItems.add(negocioInfoDatosContacto);
+/*
 
         String[] imageUrls = {"https://cdn.pixabay.com/photo/2016/11/18/17/42/barbecue-1836053_640.jpg",
                 "https://cdn.pixabay.com/photo/2016/07/11/03/23/chicken-rice-1508984_640.jpg",
@@ -113,17 +121,24 @@ public class FragmentoInfoNegocio extends Fragment {
                 "Chicken wings coated with batter of flour",
                 "Deep-fried cottage cheese balls sautéed with ginger", "Meat shreds, lime juice and coriander"};
         String[] price = {"₹220", "₹530", "₹400", "₹790", "₹150"};
+
         boolean[] isHot = {true, false, true, true, false};
+
         for (int i = 0; i < imageUrls.length; i++) {
             FoodItem foodItem = new FoodItem(titles[i], descriptions[i], imageUrls[i], price[i],isHot[i]);
             //add food items
             recyclerViewItems.add(foodItem);
         }
+        */
 
         Footer footer = new Footer("Your diet is a bank account. Good food choices are good investments.",
                 "Bethenny Frankel", "https://cdn.pixabay.com/photo/2016/12/26/17/28/background-1932466_640.jpg");
         //add footer
+
+
         recyclerViewItems.add(footer);
+
+
         return recyclerViewItems;
     }
 

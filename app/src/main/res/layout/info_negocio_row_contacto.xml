@@ -12,71 +12,72 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <!--  Direccion Label -->
+        <!--  Sitio WEB-->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_direccion"
+            <EditText android:id="@+id/input_sitioWeb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Direccion" />
+                android:hint="Sitio Web" />
         </android.support.design.widget.TextInputLayout>
 
 
-        <!--  Distancia Label -->
+        <!--  Telefono Local Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_distancia"
+            <EditText android:id="@+id/input_telefonoLocal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Distancia" />
+                android:hint="Telefono Local" />
         </android.support.design.widget.TextInputLayout>
 
-        <!--  Horario Label -->
+        <!--  Telefono Celular Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_horario"
+            <EditText android:id="@+id/input_telefonoCelular1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Horario" />
+                android:hint="Telefono Celular 1" />
         </android.support.design.widget.TextInputLayout>
 
-        <!--  Categoria Label -->
+        <!--  Telefono Celular Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_categoria"
+            <EditText android:id="@+id/input_telefonoCelular2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Categoria"/>
+                android:hint="Telefono Celular 2" />
         </android.support.design.widget.TextInputLayout>
 
-        <!--  Categoria Label -->
+        <!--  Telefono Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_colonia"
+            <EditText android:id="@+id/input_correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Colonia"/>
+                android:hint="Correo" />
         </android.support.design.widget.TextInputLayout>
+
 
 
     </LinearLayout>
