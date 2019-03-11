@@ -25,6 +25,8 @@ import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderServicios;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoServicios;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.network.AppController;
 import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
@@ -36,7 +38,7 @@ import java.util.List;
 
 public class FragmentoInfoNegocio extends Fragment {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.5:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://192.168.0.3:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     NegocioDto negocioDtoConDatos = new NegocioDto();
     RecyclerView recyclerView;
@@ -106,6 +108,12 @@ public class FragmentoInfoNegocio extends Fragment {
 
         NegocioInfoDatosContacto negocioInfoDatosContacto = new NegocioInfoDatosContacto();
         recyclerViewItems.add(negocioInfoDatosContacto);
+
+        NegocioInfoHeaderServicios negocioInfoHeaderServicios = new NegocioInfoHeaderServicios();
+        recyclerViewItems.add(negocioInfoHeaderServicios);
+
+        NegocioInfoServicios negocioInfoServicios = new NegocioInfoServicios();
+        recyclerViewItems.add(negocioInfoServicios);
 /*
 
         String[] imageUrls = {"https://cdn.pixabay.com/photo/2016/11/18/17/42/barbecue-1836053_640.jpg",

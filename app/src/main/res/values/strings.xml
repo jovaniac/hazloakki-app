@@ -1,5 +1,5 @@
 <resources>
-    <string name="titulo_tab_negocios">BUSCALO AKI</string>
+    <string name="titulo_tab_negocios">NEGOCIOS</string>
     <string name="app_name">"HazloAkki App"</string>
 
     <string name="action_settings">Configuración</string>
@@ -14,7 +14,7 @@
     <string name="accion_hoy">QUÉ DECEAS HACER HOY?</string>
 
     <string name="titulo_tab_platillos">PLATILLOS</string>
-    <string name="titulo_tab_eventos">OFERTAS Y PROMOCIONEA</string>
+    <string name="titulo_tab_eventos">OFERTAS</string>
     <string name="titulo_tab_perfil">SOCIAL</string>
     <string name="titulo_tab_social">SOCIAL</string>
 

@@ -16,6 +16,8 @@ import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderServicios;
+import com.herprogramacion.hazloakki.modelo.NegocioInfoServicios;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.R;
 
@@ -37,10 +39,13 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
 
     private static final int DATOS_CONTACTO_ITEM = 4;
 
+    private static final int DATOS_SERVICIOS_TITULO_ITEM =5;
+    private static final int DATOS_SERVICIOS_ITEM = 6;
+
     //Footer Item Type
-    private static final int FOOTER_ITEM = 5;
+    private static final int FOOTER_ITEM = 7;
     ////Food Item Type
-    private static final int FOOD_ITEM = 6;
+    private static final int FOOD_ITEM = 8;
 
 
 
@@ -67,27 +72,28 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         if (viewType == HEADER_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_header, parent, false);
             return new HeaderHolder(row);
-
         } else if (viewType == DIRECCION_NEGOCIO_TITULO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_direccion_row_header, parent, false);
             return new AdvertisementHolder(row);
-        }
-        else if (viewType == DIRECCION_NEGOCIO_ITEM) {
+        }else if (viewType == DIRECCION_NEGOCIO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_direccion, parent, false);
             return new DireccionHolder(row);
         }else if (viewType == DATOS_CONTACTO_TITULO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_contacto_row_header, parent, false);
             return new ContactoHeaderHolder(row);
-        }
-        else if (viewType == DATOS_CONTACTO_ITEM) {
+        }else if (viewType == DATOS_CONTACTO_ITEM) {
             row = inflater.inflate(R.layout.info_negocio_row_contacto, parent, false);
             return new ContactoHolder(row);
-        }
-        else if (viewType == FOOTER_ITEM) {
+        }else if (viewType == DATOS_SERVICIOS_TITULO_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_servicios_row_header, parent, false);
+            return new ServiciosHeaderHolder(row);
+        }else if (viewType == DATOS_SERVICIOS_ITEM) {
+            row = inflater.inflate(R.layout.info_negocio_servicios_row_header, parent, false);
+            return new ServiciosHolder(row);
+        } else if (viewType == FOOTER_ITEM) {
             row = inflater.inflate(R.layout.custom_row_footer, parent, false);
             return new FooterHolder(row);
-        }
-        else if (viewType == FOOD_ITEM) {
+        } else if (viewType == FOOD_ITEM) {
             row = inflater.inflate(R.layout.custom_row_food, parent, false);
             return new FoodItemHolder(row);
 
@@ -162,6 +168,10 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             return DATOS_CONTACTO_TITULO_ITEM;
         else if(recyclerViewItem instanceof NegocioInfoDatosContacto)
             return DATOS_CONTACTO_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoHeaderServicios)
+            return DATOS_SERVICIOS_TITULO_ITEM;
+        else if(recyclerViewItem instanceof NegocioInfoServicios)
+            return DATOS_SERVICIOS_ITEM;
         else if (recyclerViewItem instanceof Footer)
             return FOOTER_ITEM;
         //if its FoodItem then return Food item
@@ -279,6 +289,29 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             infoTelefonoMovil2 = itemView.findViewById(R.id.input_telefonoCelular2);
         }
     }
+
+    private class ServiciosHeaderHolder extends RecyclerView.ViewHolder{
+        public ImageView imageViewAdvertisementBanner;
+        public TextView textViewAdvertMessage;
+
+        public ServiciosHeaderHolder(View view){
+            super(view);
+            //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
+            textViewAdvertMessage = (TextView)view.findViewById(R.id.datosServicios);
+        }
+    }
+
+    private class ServiciosHolder extends RecyclerView.ViewHolder{
+        public ImageView imageViewAdvertisementBanner;
+        public TextView textViewAdvertMessage;
+
+        public ServiciosHolder(View view){
+            super(view);
+            //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
+            textViewAdvertMessage = (TextView)view.findViewById(R.id.input_direccion2);
+        }
+    }
+
 
     public List<RecyclerViewItem> getRecyclerViewItems() {
         return recyclerViewItems;

@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/datosContactoHolder"
+        android:id="@+id/datosServiciosHolder"
         android:layout_gravity="center"
         android:background="@android:color/holo_red_light">
 
@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
-            android:id="@+id/datosContacto"
-            android:text="Contacto"
+            android:id="@+id/datosServicios"
+            android:text="Servicios"
             android:textSize="20sp"
             android:textColor="@color/color_light"
             />

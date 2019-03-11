@@ -18,64 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_direccion"
+            <EditText android:id="@+id/input_direccion2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Direccion" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <!--  Distancia Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_distancia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Distancia" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!--  Horario Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_horario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Horario" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!--  Categoria Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_categoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Categoria"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <!--  Categoria Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp">
-            <EditText android:id="@+id/input_colonia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Colonia"/>
+                android:hint="Direccion 2" />
         </android.support.design.widget.TextInputLayout>
 
 

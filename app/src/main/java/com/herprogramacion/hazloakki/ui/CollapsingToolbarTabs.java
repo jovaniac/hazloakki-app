@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class CollapsingToolbarTabs extends AppCompatActivity {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.5:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://192.168.0.3:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     private NegocioDto negocioDto = new NegocioDto();
 
@@ -75,11 +75,11 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
         fragmentoInfoNegocio.setArguments(data);
 
 
-        mViewPagerAdapter.addFragment(fragmentoInfoNegocio, "Info");
+        mViewPagerAdapter.addFragment(fragmentoInfoNegocio, "INFO");
 
 
-        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "Servicios");
-        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "Chamba");
+        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "OFERTAS");
+        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "CHAMBA");
         mViewPager.setAdapter(mViewPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
