@@ -22,4 +22,7 @@
     <dimen name="headerTextSize">15sp</dimen>
     <dimen name="elementTextTitleSize">14sp</dimen>
     <dimen name="elementTextValueSize">13sp</dimen>
+
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
 </resources>

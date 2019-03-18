@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.herprogramacion.hazloakki.ui.spash.SplasTodoAquiApp">
 
+    <!--
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +20,29 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/advertisementHolder"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_red_light">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:id="@+id/filtros"
+                android:text="Aqui van filtros"
+                android:textSize="20sp"
+                android:textColor="@color/color_light"
+                />
+        </FrameLayout>
+
     </android.support.design.widget.AppBarLayout>
+    -->
 
     <include layout="@layout/fragmento_info_negocio_contenido" />
 

@@ -1,44 +1,28 @@
 package com.herprogramacion.hazloakki.modelo;
 
+import com.herprogramacion.hazloakki.ui.AdaptadorDirecciones;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class NegocioInfoServicios extends RecyclerViewItem{
 
-    private List<ServiciosDto> serviciosList = new ArrayList<>();
-    private List<MetodoPagoDto> metodoPagoList = new ArrayList<>();
-    private List<TipoTarjetaDto> tipoTarjetaList = new ArrayList<>();
-    private List<HorarioNegocioDto> horarioNegocio = new ArrayList<>();
+    private String nombre;
+    private String descripcion;
 
-    public List<ServiciosDto> getServiciosList() {
-        return serviciosList;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setServiciosList(List<ServiciosDto> serviciosList) {
-        this.serviciosList = serviciosList;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public List<MetodoPagoDto> getMetodoPagoList() {
-        return metodoPagoList;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setMetodoPagoList(List<MetodoPagoDto> metodoPagoList) {
-        this.metodoPagoList = metodoPagoList;
-    }
-
-    public List<TipoTarjetaDto> getTipoTarjetaList() {
-        return tipoTarjetaList;
-    }
-
-    public void setTipoTarjetaList(List<TipoTarjetaDto> tipoTarjetaList) {
-        this.tipoTarjetaList = tipoTarjetaList;
-    }
-
-    public List<HorarioNegocioDto> getHorarioNegocio() {
-        return horarioNegocio;
-    }
-
-    public void setHorarioNegocio(List<HorarioNegocioDto> horarioNegocio) {
-        this.horarioNegocio = horarioNegocio;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

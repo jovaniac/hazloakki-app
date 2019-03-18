@@ -4,9 +4,10 @@ public class NegocioInfoDatosContacto extends RecyclerViewItem{
 
     private String sitioWeb;
     private String telefonoCelular;
-    private String telefonoMovil1;
-    private String telefonoMovil2;
+    private String telefonoCel1;
+    private String telefonoCel2;
     private String mail;
+    private String responsable;
 
     public String getSitioWeb() {
         return sitioWeb;
@@ -24,20 +25,20 @@ public class NegocioInfoDatosContacto extends RecyclerViewItem{
         this.telefonoCelular = telefonoCelular;
     }
 
-    public String getTelefonoMovil1() {
-        return telefonoMovil1;
+    public String getTelefonoCel1() {
+        return telefonoCel1;
     }
 
-    public void setTelefonoMovil1(String telefonoMovil1) {
-        this.telefonoMovil1 = telefonoMovil1;
+    public void setTelefonoCel1(String telefonoCel1) {
+        this.telefonoCel1 = telefonoCel1;
     }
 
-    public String getTelefonoMovil2() {
-        return telefonoMovil2;
+    public String getTelefonoCel2() {
+        return telefonoCel2;
     }
 
-    public void setTelefonoMovil2(String telefonoMovil2) {
-        this.telefonoMovil2 = telefonoMovil2;
+    public void setTelefonoCel2(String telefonoCel2) {
+        this.telefonoCel2 = telefonoCel2;
     }
 
     public String getMail() {
@@ -46,5 +47,13 @@ public class NegocioInfoDatosContacto extends RecyclerViewItem{
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
     }
 }

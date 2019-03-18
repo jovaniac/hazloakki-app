@@ -38,11 +38,13 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collapsing_toobar_tabs);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarCollapsin);
+        toolbar.setTitle("Nombre del Negocio");
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +52,7 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
 
         ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -62,31 +65,27 @@ public class CollapsingToolbarTabs extends AppCompatActivity {
         if (!bundle.isEmpty()) {
             Toast.makeText(getApplicationContext(),"Negocio Seleccionado Collapsin:"+bundle.getString("idNegocio"), Toast.LENGTH_LONG).show();
             data.putString("idNegocio", bundle.getString("idNegocio"));//put string, int, etc in bundle with a key value
-
         }
 
 
-        //FragmentoOfertasNegocio fragmentoOfertasNegocio = new FragmentoOfertasNegocio();
-        //mViewPagerAdapter.addFragment(fragmentoOfertasNegocio, "Ofertas");
-
+        FragmentoOfertasNegocio fragmentoOfertasNegocio = new FragmentoOfertasNegocio();
+        fragmentoOfertasNegocio.setArguments(data);
 
         FragmentoInfoNegocio fragmentoInfoNegocio = new FragmentoInfoNegocio();
-
         fragmentoInfoNegocio.setArguments(data);
 
 
+        mViewPagerAdapter.addFragment(fragmentoOfertasNegocio, "OFERTAS");
+        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "QUE OPINAN");
         mViewPagerAdapter.addFragment(fragmentoInfoNegocio, "INFO");
 
-
-        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "OFERTAS");
-        mViewPagerAdapter.addFragment(DemoFragment.newInstance(), "CHAMBA");
         mViewPager.setAdapter(mViewPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         ImageView imageViewMusic = findViewById(R.id.imaViewMusic);
-        Picasso.with(this).load("https://cdn.pixabay.com/photo/2015/04/13/13/37/dj-720589_640.jpg").fit().into(imageViewMusic);
+        Picasso.with(this).load("http://www.defe.mx/_/rsrc/1399266135277/mexico-df/transporte/autobuses/terminal-central-sur-taxquena/Taxque%C3%B1a.JPG?height=220&width=320+").fit().into(imageViewMusic);
     }
 
 

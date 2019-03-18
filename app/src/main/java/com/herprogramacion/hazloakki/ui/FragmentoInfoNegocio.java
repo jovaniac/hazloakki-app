@@ -17,8 +17,8 @@ import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorInfoNegocio;
-import com.herprogramacion.hazloakki.modelo.FoodItem;
 import com.herprogramacion.hazloakki.modelo.Footer;
+import com.herprogramacion.hazloakki.modelo.MetodoPagoDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDatosContacto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoDireccionDto;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeader;
@@ -28,6 +28,8 @@ import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderDireccion;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderServicios;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoServicios;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
+import com.herprogramacion.hazloakki.modelo.ServiciosDto;
+import com.herprogramacion.hazloakki.modelo.TipoTarjetaDto;
 import com.herprogramacion.hazloakki.network.AppController;
 import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
 
@@ -77,7 +79,7 @@ public class FragmentoInfoNegocio extends Fragment {
 
         NegocioDto negocioDto = new NegocioDto();
         negocioDto.setDescripcion(negocioDtoConDatos.getDescripcion());
-        negocioDto.setCategoria(negocioDtoConDatos.getCategoria());
+        negocioDto.setCategoria(negocioDtoConDatos.getNombreCategoria());
         negocioDto.setNombre(negocioDtoConDatos.getNombre());
 
         NegocioInfoHeader header = new NegocioInfoHeader("https://cdn.pixabay.com/photo/2017/09/30/15/10/pizza-2802332_640.jpg",negocioDto);
@@ -93,9 +95,9 @@ public class FragmentoInfoNegocio extends Fragment {
 
         NegocioInfoDireccionDto negocioInfoDireccionDto = new NegocioInfoDireccionDto();
 
-        negocioInfoDireccionDto.setDireccion(negocioDtoConDatos.getDomicilio());
+        negocioInfoDireccionDto.setDireccion(negocioDtoConDatos.getDomicilio() +" "+ negocioDtoConDatos.getColonia() +" "+ negocioDtoConDatos.getCodigoPostal());
         negocioInfoDireccionDto.setColonia(negocioDtoConDatos.getColonia());
-        negocioInfoDireccionDto.setHorario(negocioDtoConDatos.getHorario());
+        negocioInfoDireccionDto.setHorario(negocioDtoConDatos.getHorarioDia());
         negocioInfoDireccionDto.setDistancia(negocioDtoConDatos.getDistancia());
         negocioInfoDireccionDto.setNumeroOfertasPublicadas(String.valueOf(negocioDtoConDatos.getNumeroOfertas()));
 
@@ -107,37 +109,52 @@ public class FragmentoInfoNegocio extends Fragment {
         recyclerViewItems.add(infoHeaderDatosContacto);
 
         NegocioInfoDatosContacto negocioInfoDatosContacto = new NegocioInfoDatosContacto();
+            negocioInfoDatosContacto.setMail(negocioDtoConDatos.getEmail());
+            negocioInfoDatosContacto.setResponsable(negocioDtoConDatos.getResponsable());
+            negocioInfoDatosContacto.setSitioWeb(negocioDtoConDatos.getSitioWeb());
+            negocioInfoDatosContacto.setTelefonoCelular(negocioDtoConDatos.getTelefono());
+            negocioInfoDatosContacto.setTelefonoCel1(negocioDtoConDatos.getTelefonoCel1());
+            negocioInfoDatosContacto.setTelefonoCel2(negocioDtoConDatos.getTelefonoCel2());
+
         recyclerViewItems.add(negocioInfoDatosContacto);
 
         NegocioInfoHeaderServicios negocioInfoHeaderServicios = new NegocioInfoHeaderServicios();
         recyclerViewItems.add(negocioInfoHeaderServicios);
 
         NegocioInfoServicios negocioInfoServicios = new NegocioInfoServicios();
-        recyclerViewItems.add(negocioInfoServicios);
-/*
 
-        String[] imageUrls = {"https://cdn.pixabay.com/photo/2016/11/18/17/42/barbecue-1836053_640.jpg",
-                "https://cdn.pixabay.com/photo/2016/07/11/03/23/chicken-rice-1508984_640.jpg",
-                "https://cdn.pixabay.com/photo/2017/03/30/08/10/chicken-intestine-2187505_640.jpg",
-                "https://cdn.pixabay.com/photo/2017/02/15/15/17/meal-2069021_640.jpg",
-                "https://cdn.pixabay.com/photo/2017/06/01/07/15/food-2362678_640.jpg"};
-        String[] titles = {"5 in 1 Chicken Zinger Box",
-                "Paneer Butter Masala",
-                "Chicken Lollipop Masala", "Paneer Manchurian", "Non-Veg. Lemon & Coriander Soup"};
-        String[] descriptions = {"Chicken zinger+hot wings [2 pieces]+veg strip [1 piece]+Pillsbury cookie cake+Pepsi [can]",
-                "A spicy North Indian dish made from cottage cheese, cream, butter and select spices",
-                "Chicken wings coated with batter of flour",
-                "Deep-fried cottage cheese balls sautéed with ginger", "Meat shreds, lime juice and coriander"};
-        String[] price = {"₹220", "₹530", "₹400", "₹790", "₹150"};
+        /*
+        servicios
+         */
+        for(ServiciosDto serviciosDto:negocioDtoConDatos.getServiciosList()){
 
-        boolean[] isHot = {true, false, true, true, false};
+            negocioInfoServicios.setNombre(serviciosDto.getNombre());
+            negocioInfoServicios.setDescripcion(serviciosDto.getDescripcion());
 
-        for (int i = 0; i < imageUrls.length; i++) {
-            FoodItem foodItem = new FoodItem(titles[i], descriptions[i], imageUrls[i], price[i],isHot[i]);
-            //add food items
-            recyclerViewItems.add(foodItem);
+            recyclerViewItems.add(negocioInfoServicios);
+
+            negocioInfoServicios = new NegocioInfoServicios();
         }
-        */
+
+        for(MetodoPagoDto metodoPagoDto: negocioDtoConDatos.getMetodoPagoList()){
+            negocioInfoServicios.setNombre(metodoPagoDto.getNombre());
+            negocioInfoServicios.setDescripcion(metodoPagoDto.getDescripcion());
+
+            recyclerViewItems.add(negocioInfoServicios);
+
+            negocioInfoServicios = new NegocioInfoServicios();
+        }
+
+        for(TipoTarjetaDto tipoTarjetaDto: negocioDtoConDatos.getTipoTarjetaList()){
+            negocioInfoServicios.setNombre(tipoTarjetaDto.getNombre());
+            negocioInfoServicios.setDescripcion(tipoTarjetaDto.getDescripcion());
+
+            recyclerViewItems.add(negocioInfoServicios);
+
+            negocioInfoServicios = new NegocioInfoServicios();
+        }
+
+
 
         Footer footer = new Footer("Your diet is a bank account. Good food choices are good investments.",
                 "Bethenny Frankel", "https://cdn.pixabay.com/photo/2016/12/26/17/28/background-1932466_640.jpg");

@@ -20,7 +20,9 @@ import com.herprogramacion.hazloakki.modelo.NegocioInfoHeaderServicios;
 import com.herprogramacion.hazloakki.modelo.NegocioInfoServicios;
 import com.herprogramacion.hazloakki.modelo.RecyclerViewItem;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.ui.AdaptadorDirecciones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -88,7 +90,7 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             row = inflater.inflate(R.layout.info_negocio_servicios_row_header, parent, false);
             return new ServiciosHeaderHolder(row);
         }else if (viewType == DATOS_SERVICIOS_ITEM) {
-            row = inflater.inflate(R.layout.info_negocio_servicios_row_header, parent, false);
+            row = inflater.inflate(R.layout.item_lista_direccion, parent, false);
             return new ServiciosHolder(row);
         } else if (viewType == FOOTER_ITEM) {
             row = inflater.inflate(R.layout.custom_row_footer, parent, false);
@@ -117,21 +119,41 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
 
         }else if (holder instanceof DireccionHolder) {
             DireccionHolder footerHolder = (DireccionHolder) holder;
-            NegocioInfoDireccionDto footer = (NegocioInfoDireccionDto) recyclerViewItem;
+            NegocioInfoDireccionDto negocioDireccion = (NegocioInfoDireccionDto) recyclerViewItem;
             //set data
-            footerHolder.infoDireccion.setText(footer.getDireccion());
-            footerHolder.infoDistancia.setText(footer.getDistancia());
-            footerHolder.infoColonia.setText(footer.getColonia());
+            footerHolder.infoDireccion.setText(negocioDireccion.getDireccion());
+            footerHolder.infoDistancia.setText(negocioDireccion.getDistancia());
+            footerHolder.infoColonia.setText(negocioDireccion.getColonia());
+            footerHolder.infoHorario.setText(negocioDireccion.getHorario());
            // Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
 
-        }
-       else if (holder instanceof FooterHolder) {
+        } else if (holder instanceof FooterHolder) {
             FooterHolder footerHolder = (FooterHolder) holder;
             Footer footer = (Footer) recyclerViewItem;
             //set data
             footerHolder.texViewQuote.setText(footer.getQuote());
             footerHolder.textViewAuthor.setText(footer.getAuthor());
             Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewFooter);
+        }else if (holder instanceof ContactoHolder) {
+            ContactoHolder footerHolder = (ContactoHolder) holder;
+        NegocioInfoDatosContacto datosContacto = (NegocioInfoDatosContacto) recyclerViewItem;
+        //set data
+        footerHolder.infoMail.setText(datosContacto.getMail());
+        footerHolder.infoSitioWeb.setText(datosContacto.getSitioWeb());
+        footerHolder.infoTelefonoLocal.setText(datosContacto.getTelefonoCelular());
+        footerHolder.infoTelefonoMovil1.setText(datosContacto.getTelefonoCel1());
+        footerHolder.infoTelefonoMovil2.setText(datosContacto.getTelefonoCel2());
+        footerHolder.infoResponsable.setText(datosContacto.getResponsable());
+
+        // Glide.with(mContext).load(footer.getImageUrl()).into(footerHolder.imageViewHeader);
+
+        } else if(holder instanceof ServiciosHolder){
+
+            ServiciosHolder serviciosHolder = (ServiciosHolder) holder;
+            NegocioInfoServicios negocioInfoServicios = (NegocioInfoServicios) recyclerViewItem;
+
+            serviciosHolder.infoNombre.setText(negocioInfoServicios.getNombre());
+            serviciosHolder.infoDescripcion.setText(negocioInfoServicios.getDescripcion());
         }
 
         /*
@@ -223,16 +245,14 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         public ImageView imageViewHeader;
         public TextView infoDireccion;
         public TextView infoDistancia;
-        public TextView infHorario;
+        public TextView infoHorario;
         public TextView infoColonia;
-        public TextView infoCategoria;
 
         public DireccionHolder(View view) {
             super(view);
             infoDireccion = itemView.findViewById(R.id.input_direccion);
             infoDistancia = itemView.findViewById(R.id.input_distancia);
-            infHorario = itemView.findViewById(R.id.input_horario);
-            infoCategoria = itemView.findViewById(R.id.input_categoria);
+            infoHorario = itemView.findViewById(R.id.input_horario);
             infoColonia = itemView.findViewById(R.id.input_colonia);
         }
     }
@@ -276,17 +296,20 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         public ImageView imageViewHeader;
         public TextView infoSitioWeb;
         public TextView infoMail;
-        public TextView infTelefonoLocal;
+        public TextView infoTelefonoLocal;
         public TextView infoTelefonoMovil1;
         public TextView infoTelefonoMovil2;
+        public TextView infoResponsable;
+
 
         public ContactoHolder(View view){
             super(view);
             infoSitioWeb = itemView.findViewById(R.id.input_sitioWeb);
             infoMail = itemView.findViewById(R.id.input_correo);
-            infTelefonoLocal = itemView.findViewById(R.id.input_telefonoLocal);
+            infoTelefonoLocal = itemView.findViewById(R.id.input_telefonoLocal);
             infoTelefonoMovil1 = itemView.findViewById(R.id.input_telefonoCelular1);
             infoTelefonoMovil2 = itemView.findViewById(R.id.input_telefonoCelular2);
+            infoResponsable = itemView.findViewById(R.id.input_responsable);
         }
     }
 
@@ -301,7 +324,7 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
         }
     }
 
-    private class ServiciosHolder extends RecyclerView.ViewHolder{
+/*    private class ServiciosHolder extends RecyclerView.ViewHolder{
         public ImageView imageViewAdvertisementBanner;
         public TextView textViewAdvertMessage;
 
@@ -310,8 +333,20 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
             //imageViewAdvertisementBanner = (ImageView)view.findViewById(R.id.imageViewAdvertisementBanner);
             textViewAdvertMessage = (TextView)view.findViewById(R.id.input_direccion2);
         }
-    }
+    }*/
 
+    private class ServiciosHolder extends RecyclerView.ViewHolder {
+        // Campos respectivos de un item
+        public TextView infoNombre;
+        public TextView infoDescripcion;
+
+        public ServiciosHolder(View v) {
+            super(v);
+            infoNombre = (TextView) v.findViewById(R.id.info_servicio);
+            infoDescripcion = (TextView) v.findViewById(R.id.info_descripcion);
+
+        }
+    }
 
     public List<RecyclerViewItem> getRecyclerViewItems() {
         return recyclerViewItems;
@@ -320,4 +355,9 @@ public class AdaptadorInfoNegocio extends RecyclerView.Adapter {
     public void setRecyclerViewItems(List<RecyclerViewItem> recyclerViewItems) {
         this.recyclerViewItems = recyclerViewItems;
     }
+
+
 }
+
+
+

@@ -16,6 +16,8 @@ public class NegocioDto {
 	private String email;
 	private String descripcion;
 	private String telefono;
+	private String telefonoCel1;
+	private String telefonoCel2;
 	private String domicilio;
 	private Double latitud;
 	private Double longitud;
@@ -38,6 +40,8 @@ public class NegocioDto {
 	private String calificacion;
 	private Integer numeroOfertas;
 	private String ultimoComentario;
+	private String nombreCategoria;
+	private String horarioDia;
 
 	public String getIdNegocio() {
 		return idNegocio;
@@ -61,6 +65,14 @@ public class NegocioDto {
 
 	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getEmail() {
@@ -239,21 +251,12 @@ public class NegocioDto {
 		this.distancia = distancia;
 	}
 
-
 	public String getCalificacion() {
 		return calificacion;
 	}
 
 	public void setCalificacion(String calificacion) {
 		this.calificacion = calificacion;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 
 	public Integer getNumeroOfertas() {
@@ -270,6 +273,14 @@ public class NegocioDto {
 
 	public void setUltimoComentario(String ultimoComentario) {
 		this.ultimoComentario = ultimoComentario;
+	}
+
+	public String getNombreCategoria() {
+		return nombreCategoria;
+	}
+
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
 	}
 
 	@Override
@@ -304,6 +315,31 @@ public class NegocioDto {
 				", calificacion='" + calificacion + '\'' +
 				", numeroOfertas=" + numeroOfertas +
 				", ultimoComentario='" + ultimoComentario + '\'' +
+				", nombreCategoria='" + nombreCategoria + '\'' +
 				'}';
+	}
+
+	public String getTelefonoCel1() {
+		return telefonoCel1;
+	}
+
+	public void setTelefonoCel1(String telefonoCel1) {
+		this.telefonoCel1 = telefonoCel1;
+	}
+
+	public String getTelefonoCel2() {
+		return telefonoCel2;
+	}
+
+	public void setTelefonoCel2(String telefonoCel2) {
+		this.telefonoCel2 = telefonoCel2;
+	}
+
+	public String getHorarioDia() {
+		return horarioDia;
+	}
+
+	public void setHorarioDia(String horarioDia) {
+		this.horarioDia = horarioDia;
 	}
 }

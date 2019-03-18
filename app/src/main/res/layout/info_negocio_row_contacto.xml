@@ -79,6 +79,17 @@
         </android.support.design.widget.TextInputLayout>
 
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp">
+            <EditText android:id="@+id/input_responsable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Responsable" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 </ScrollView>

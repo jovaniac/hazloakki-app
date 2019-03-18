@@ -230,6 +230,7 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
 
         Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), CollapsingToolbarTabs.class);
         detalleNegocio.putExtra("idNegocio",idNegocio);
+        detalleNegocio.putExtra("nombreNegocio","");
 
 
         startActivity(detalleNegocio);

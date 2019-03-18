@@ -27,10 +27,7 @@ public class AdaptadorDirecciones
 
         public ViewHolder(View v) {
             super(v);
-            direccion = (TextView) v.findViewById(R.id.texto_direccion);
-            departamento = (TextView) v.findViewById(R.id.texto_departamento);
-            ciudad = (TextView) v.findViewById(R.id.texto_ciudad);
-            telefono = (TextView) v.findViewById(R.id.texto_telefono);
+
         }
     }
 

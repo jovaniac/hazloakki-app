@@ -10,33 +10,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/texto_direccion"
+            android:id="@+id/info_servicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dirección"
+            android:text="Servicio"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/texto_departamento"
+            android:id="@+id/info_descripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Departamento"
+            android:text="Descripcion"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android:id="@+id/texto_ciudad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ciudad"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/texto_telefono"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Teléfono"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
     <ImageView
