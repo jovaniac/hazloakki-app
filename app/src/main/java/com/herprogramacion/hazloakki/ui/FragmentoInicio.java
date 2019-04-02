@@ -48,7 +48,7 @@ public class FragmentoInicio extends Fragment {
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
     private AdaptadorInicio adaptador;
-    private String REQUEST_ACCIONES = "http://192.168.0.3:8091/api/v1/acciones";
+    private String REQUEST_ACCIONES = "http://192.168.0.7:8091/api/v1/acciones";
     private String TAG = FragmentTabServicios.class.getSimpleName();
     private Gson gson = new Gson();
     private static final String INDICE_SECCION = "com.restaurantericoparico.FragmentoCategoriasTab.extra.INDICE_SECCION";

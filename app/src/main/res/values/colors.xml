@@ -22,4 +22,40 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="green">#5cb85c</color>
+>
+    <color name="white">#ffffff</color>
+
+    <color name="silver">#969696</color>
+    <color name="blue">#0288D1</color>
+    <color name="light_grey">#FFBDBDBD</color>
+    <color name="dark_grey">#333434</color>
+    <color name="transparent_black">#CC000000</color>
+
+    <color name="grey">#616161</color>
+    <color name="stock_activity_background">#FFFAFAFA</color>
+
+    <color name="saffron">#F4B63E</color>
+    <color name="sienna">#EB6460</color>
+    <color name="purple">#7c57e4</color>
+    <color name="pink">#ff4284</color>
+    <color name="orange">#ff8c6a</color>
+    <color name="yellow">#ebdb60</color>
+    <color name="peach">#C9EDD8B8</color>
+    <color name="spotlight">#C7010B0E</color>
+    <color name="transparent">#AA000000</color>
+    <color name="clock_transparent">#AA000000</color>
+    <color name="github_contributions_light_green">#8CC665</color>
+
+    <color name="white_transparent">#75ffffff</color>
+    <color name="very_light_grey">#e1e1e1</color>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="primary_light">#C5CAE9</color>
+    <color name="accent">#03A9F4</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#cbcbcb</color>
 </resources>

@@ -3,17 +3,10 @@ package com.herprogramacion.hazloakki.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -34,10 +27,6 @@ import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorNegocio;
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import com.herprogramacion.hazloakki.network.AppController;
-import com.herprogramacion.hazloakki.ui.FragmentoDirecciones;
-import com.herprogramacion.hazloakki.ui.FragmentoPerfil;
-import com.herprogramacion.hazloakki.ui.FragmentoTarjetas;
-import com.herprogramacion.hazloakki.ui.spash.FullscreenFormActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +45,7 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private AdaptadorNegocio adaptadorNegocio;
-    private String REQUEST_NEGOCIOS = "http://192.168.0.3:8086/api/v1/negocios/acciones/";
+    private String REQUEST_NEGOCIOS = "http://192.168.0.7:8086/api/v1/negocios/acciones/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
 
@@ -228,7 +217,7 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
     @Override
     public void onClick(AdaptadorNegocio.ViewHolder holder, String idNegocio) {
 
-        Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), CollapsingToolbarTabs.class);
+        Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), ActividadDetalleNegocio.class);
         detalleNegocio.putExtra("idNegocio",idNegocio);
         detalleNegocio.putExtra("nombreNegocio","");
 

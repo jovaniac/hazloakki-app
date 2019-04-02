@@ -3,14 +3,10 @@ package com.herprogramacion.hazloakki.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +26,6 @@ import com.herprogramacion.hazloakki.adaptador.ProductsAdapter;
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
 import com.herprogramacion.hazloakki.modelo.Product;
 import com.herprogramacion.hazloakki.network.AppController;
-import com.herprogramacion.hazloakki.ui.CollapsingToolbarTabs;
-import com.herprogramacion.hazloakki.ui.NegociosRecyclerView;
-import com.herprogramacion.hazloakki.utils.EndlessScrollListener;
 import com.herprogramacion.hazloakki.utils.Space;
 
 import org.json.JSONArray;
@@ -50,7 +43,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private AdaptadorOfertas adaptadorNegocio;
-    private String REQUEST_OFERTAS = "http://192.168.0.3:8089/api/v1/ofertas/negocios/";
+    private String REQUEST_OFERTAS = "http://192.168.0.7:8089/api/v1/ofertas/negocios/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
     private ProductsAdapter productsAdapter;
@@ -79,17 +72,18 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
                 GridLayoutManager.VERTICAL,//Orientation
                 false);//reverse scrolling of recyclerview
         //set layout manager as gridLayoutManager
+
         recyclerViewProducts.setLayoutManager(gridLayoutManager);
 
 
         //Crete new EndlessScrollListener fo endless recyclerview loading
-        EndlessScrollListener endlessScrollListener = new EndlessScrollListener(gridLayoutManager) {
+        /*EndlessScrollListener endlessScrollListener = new EndlessScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 if (!productsAdapter.loading)
                     feedData();
             }
-        };
+        };*/
 
         //to give loading item full single row
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -110,19 +104,19 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
 
         ctx = getContext();
 
-        feedData();
+        //feedData();
 
-        recyclerViewProducts.addOnScrollListener(endlessScrollListener);
+       // recyclerViewProducts.addOnScrollListener(endlessScrollListener);
         //add space between cards
         recyclerViewProducts.addItemDecoration(new Space(2, 20, true, 0));
 
-        recyclerViewProducts.setAdapter(productsAdapter);
+        //recyclerViewProducts.setAdapter(productsAdapter);
 
         //load first page of recyclerview
         //endlessScrollListener.onLoadMore(0, 0);
 
 
-        //initOfertas();
+        initOfertas();
 
         return view;
     }
@@ -133,7 +127,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
     // that's why i created data locally
     private void feedData() {
         //show loading in recyclerview
-        productsAdapter.showLoading();
+        //productsAdapter.showLoading();
 
         final List<Product> products = new ArrayList<>();
         int[] imageUrls = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4};
@@ -151,36 +145,13 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
             products.add(product);
         }
 
-        productsAdapter.addProducts(products);
+        //productsAdapter.addProducts(products);
 
 
 
     }
 
     public void initOfertas(){
-
-
-        productsAdapter.showLoading();
-
-        final List<Product> products = new ArrayList<>();
-        int[] imageUrls = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4};
-        String[] ProductName = {"Kingsmon Top", "Adidas Top", "Butterfly Top", "White Top"};
-        String[] ProductPrice = {"₹594", "₹5000", "₹200", "₹1999"};
-
-        boolean[] isNew = {true, false, false, true};
-
-        for (int i = 0; i < imageUrls.length; i++) {
-            Product product = new Product(imageUrls[i],
-                    ProductName[i],
-                    ProductPrice[i],
-                    isNew[i]);
-
-            products.add(product);
-        }
-
-        productsAdapter.addProducts(products);
-
-
 
         try {
             Gson gson = new Gson();
@@ -206,13 +177,16 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
-                            productsAdapter.setListaOfertas(parseJson(response));
+                            //Toast.makeText(getContext(), "Response toString FragmentoOfertasNegocio: " +response.toString(), Toast.LENGTH_LONG).show();
+
+                            productsAdapter.addOfertas(parseJson(response));
+                           // productsAdapter.setListaOfertas(parseJson(response));
                             recyclerViewProducts.setAdapter(productsAdapter);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(), "Response toString: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "No hay ofertas cargas para este negocio: " + error.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }) {
                 @Override
@@ -251,11 +225,20 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
 
             for (int i = 0; i < response.length(); i++) {
 
-                JSONObject negocio = (JSONObject) response.get(i);
+                JSONObject data = (JSONObject) response.get(i);
 
-                OfertasDto negocioDto = new OfertasDto();
-                negocioDto.setIdOferta(negocio.getString("id"));
-                listOfertas.add(negocioDto);
+                OfertasDto ofertas = new OfertasDto();
+                    ofertas.setId(data.getString("id"));
+                    ofertas.setIdNegocio(data.getString("idNegocio"));
+                    ofertas.setTitulo(data.getString("titulo"));
+                    ofertas.setMensaje(data.getString("mensaje"));
+                    ofertas.setImagen(data.getString("imagen"));
+                    ofertas.setFecha(data.getString("fecha"));
+                    ofertas.setDuracion(data.getString("duracion"));
+                    ofertas.setPrecio(data.getString("precio"));
+                    ofertas.setEstatus(data.getBoolean("estatus"));
+
+                listOfertas.add(ofertas);
             }
             Toast.makeText(getContext(), " Negocios : "+listOfertas.size(), Toast.LENGTH_SHORT).show();
 
@@ -279,7 +262,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
     public void onClick(AdaptadorOfertas.ViewHolder holder, String idAlquiler) {
         Toast.makeText(getContext(),"Oferta Seleccionada:"+idAlquiler, Toast.LENGTH_LONG).show();
 
-        Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), CollapsingToolbarTabs.class);
+        Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), ActividadDetalleNegocio.class);
 
         startActivity(detalleNegocio);
     }

@@ -61,7 +61,7 @@ public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.View
         if (listaOfertas != null) {
             //if (items.moveToPosition(posicion)) {
             if (!listaOfertas.isEmpty()) {
-                return listaOfertas.get(posicion).getIdOferta();
+                return listaOfertas.get(posicion).getId();
             }
         }
 
@@ -89,7 +89,7 @@ public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.View
         String s;
 
         // Asignación UI
-        s = listaOfertas.get(position).getIdOferta();
+        s = listaOfertas.get(position).getId();
         holder.viewNombreNegocio.setText(s);
 
 

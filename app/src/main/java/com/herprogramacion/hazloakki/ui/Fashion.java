@@ -76,7 +76,7 @@ public class Fashion extends AppCompatActivity {
     // that's why i created data locally
     private void feedData() {
         //show loading in recyclerview
-        productsAdapter.showLoading();
+       // productsAdapter.showLoading();
         final List<Product> products = new ArrayList<>();
         int[] imageUrls = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4};
         String[] ProductName = {"Kingsmon Top", "Adidas Top", "Butterfly Top", "White Top"};
@@ -95,7 +95,7 @@ public class Fashion extends AppCompatActivity {
                 //hide loading
                 productsAdapter.hideLoading();
                 //add products to recyclerview
-                productsAdapter.addProducts(products);
+            //    productsAdapter.addProducts(products);
             }
         }, 2000);
 

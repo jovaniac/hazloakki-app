@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.herprogramacion.hazloakki" >
-
+    package="com.herprogramacion.hazloakki">
 
     <!-- Required to check whether user has network connection or not -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,10 +14,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.RicoPaRico" >
-
+        android:theme="@style/Theme.RicoPaRico">
         <activity
-            android:name="com.herprogramacion.hazloakki.ui.spash.SplasTodoAquiApp"
+            android:name=".ui.spash.SplasTodoAquiApp"
             android:label="@string/app_name"
             android:theme="@style/Theme.ConNavigationDrawer">
             <intent-filter>
@@ -28,40 +26,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.herprogramacion.hazloakki.ui.ActividadPrincipal"
+            android:name=".ui.ActividadPrincipal"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ConNavigationDrawer">
-        </activity>
-
-        <activity android:name=".ui.spash.FullscreenFormActivity" />
-
-        <activity
-            android:name="com.herprogramacion.hazloakki.ui.ActividadConfiguracion"
-            android:label="@string/titulo_actividad_configuracion"
-            android:parentActivityName="com.herprogramacion.hazloakki.ui.ActividadPrincipal" >
-        </activity>
-        <activity
-            android:name="com.herprogramacion.hazloakki.ui.NegociosRecyclerView"
-            android:label="@string/app_name"
-            android:theme="@style/Base.AppTheme2">
-        </activity>
-
-        <activity
-            android:name="com.herprogramacion.hazloakki.provider.ActividadListaAlquileres2"
-            android:label="@string/app_name"
-            android:theme="@style/Base.AppTheme2">
-        </activity>
-
-        <activity
-            android:name="com.herprogramacion.hazloakki.ui.CollapsingToolbarTabs"
-            android:label="Musica"
             android:theme="@style/Theme.ConNavigationDrawer"></activity>
+        <activity android:name=".ui.spash.FullscreenFormActivity" />
+        <activity
+            android:name=".ui.ActividadConfiguracion"
+            android:label="@string/titulo_actividad_configuracion"
+            android:parentActivityName=".ui.ActividadPrincipal"></activity>
+        <activity
+            android:name=".ui.NegociosRecyclerView"
+            android:label="@string/app_name"
+            android:theme="@style/Base.AppTheme2"></activity>
+        <activity
+            android:name=".provider.ActividadListaAlquileres2"
+            android:label="@string/app_name"
+            android:theme="@style/Base.AppTheme2"></activity>
+        <activity
+            android:name=".ui.ActividadDetalleNegocio"
+            android:label="Musica"
+            android:theme="@style/Theme.ConNavigationDrawer" />
 
         <provider
-            android:name="com.herprogramacion.hazloakki.provider.ProviderApartamentos"
+            android:name=".provider.ProviderApartamentos"
             android:authorities="com.herprogramacion.hazloakki"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ActividadInfoOferta"
+            android:label="@string/title_activity_actividad_info_oferta"
+            android:theme="@style/Theme.RicoPaRico"></activity>
+        <activity
+            android:name=".ui.ScrollingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

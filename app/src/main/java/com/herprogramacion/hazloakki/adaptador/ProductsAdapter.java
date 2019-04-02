@@ -1,24 +1,26 @@
 package com.herprogramacion.hazloakki.adaptador;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
-import com.herprogramacion.hazloakki.modelo.Product;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.ui.ScrollingActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter {
-    List<Product> mProducts;
+    List<OfertasDto> mProducts;
     Context mContext;
     public static final int LOADING_ITEM = 0;
     public static final int PRODUCT_ITEM = 1;
@@ -30,24 +32,18 @@ public class ProductsAdapter extends RecyclerView.Adapter {
         mProducts = new ArrayList<>();
         this.mContext = mContext;
     }
-    //method to add products as soon as they fetched
-    public void addProducts(List<Product> products) {
-        int lastPos = mProducts.size();
-        this.mProducts.addAll(products);
-        notifyItemRangeInserted(lastPos, mProducts.size());
-    }
 
     public void addOfertas(List<OfertasDto> listaOfertas) {
         int lastPos = mProducts.size();
-        this.mProducts.addAll(null);
+        this.mProducts.addAll(listaOfertas);
         notifyItemRangeInserted(lastPos, mProducts.size());
     }
 
 
     @Override
     public int getItemViewType(int position) {
-        Product currentProduct = mProducts.get(position);
-        if (currentProduct.isLoading()) {
+        OfertasDto ofertaActual = mProducts.get(position);
+        if (ofertaActual.isLoading()) {
             return LOADING_ITEM;
         } else {
             return PRODUCT_ITEM;
@@ -71,23 +67,27 @@ public class ProductsAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         //get current product
-        final Product currentProduct = mProducts.get(position);
+        final OfertasDto currentOferta = mProducts.get(position);
         if (holder instanceof ProductHolder) {
             ProductHolder productHolder = (ProductHolder) holder;
             //bind products information with view
-            Picasso.with(mContext).load(currentProduct.getImageResourceId()).into(productHolder.imageViewProductThumb);
-            productHolder.textViewProductName.setText(currentProduct.getProductName());
-            productHolder.textViewProductPrice.setText(currentProduct.getProductPrice());
-            if (currentProduct.isNew())
-                productHolder.textViewNew.setVisibility(View.VISIBLE);
+            Picasso.with(mContext).load("https://static.promodescuentos.com/pepperpdimages/threads/thread_large/default/298542_1.jpg").into(productHolder.imageViewProductThumb);
+            productHolder.textViewTitulo.setText(currentOferta.getTitulo());
+            productHolder.textViewPrecio.setText("Precio : $"+ currentOferta.getPrecio());
+            productHolder.textViewCalificacion.setText("Calificacion: "+ String.valueOf(currentOferta.getCalificacion()));
+            productHolder.textViewMeGusta.setText("Me Gusta: "+ String.valueOf(currentOferta.getMeGusta()));
+            productHolder.textViewTiempoPublicacion.setText(currentOferta.getFecha());
+            if (currentOferta.isToday()) {
+                productHolder.textViewTiempoPublicacion.setVisibility(View.VISIBLE);
+            }
             else
-                productHolder.textViewNew.setVisibility(View.GONE);
+                productHolder.textViewTiempoPublicacion.setVisibility(View.GONE);
 
             productHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // user selected product now you can show details of that product
-                    Toast.makeText(mContext, "Selected "+currentProduct.getProductName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Seleccionas la oferta: "+currentOferta.getId(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -102,15 +102,35 @@ public class ProductsAdapter extends RecyclerView.Adapter {
     //Holds view of product with information
     private class ProductHolder extends RecyclerView.ViewHolder {
         ImageView imageViewProductThumb;
-        TextView textViewProductName, textViewProductPrice, textViewNew;
+        TextView textViewTitulo;
+        TextView textViewPrecio;
+        TextView textViewMeGusta;
+        TextView textViewCalificacion;
+        TextView textViewTiempoPublicacion;
+        private Button irOfertaButton;
+
 
 
         public ProductHolder(View itemView) {
             super(itemView);
             imageViewProductThumb = itemView.findViewById(R.id.imageViewProductThumb);
-            textViewProductName = itemView.findViewById(R.id.tituloOferta);
-            textViewProductPrice = itemView.findViewById(R.id.precioOferta);
-            textViewNew = itemView.findViewById(R.id.textViewNew);
+            textViewTitulo = itemView.findViewById(R.id.tituloOferta);
+            textViewPrecio = itemView.findViewById(R.id.precioOferta);
+            textViewCalificacion = itemView.findViewById(R.id.calificacionOferta);
+            textViewMeGusta = itemView.findViewById(R.id.contadorMeGusta);
+            textViewTiempoPublicacion = itemView.findViewById(R.id.textViewTiempoPublicacion);
+            irOfertaButton = itemView.findViewById(R.id.irOfertaButton);
+
+            irOfertaButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext, "IR a la oferta", Toast.LENGTH_LONG).show();
+
+                    Intent detalleOferta = new Intent(mContext.getApplicationContext(), ScrollingActivity.class);
+                    mContext.startActivity(detalleOferta);
+                }
+            });
 
         }
     }
@@ -121,7 +141,7 @@ public class ProductsAdapter extends RecyclerView.Adapter {
         }
     }
 
-    //method to show loading
+    /*method to show loading
     public void showLoading() {
         Product product = new Product();
         product.setLoading(true);
@@ -129,7 +149,7 @@ public class ProductsAdapter extends RecyclerView.Adapter {
         LoadingItemPos = mProducts.size();
         notifyItemInserted(mProducts.size());
         loading = true;
-    }
+    }*/
 
     //method to hide loading
     public void hideLoading() {

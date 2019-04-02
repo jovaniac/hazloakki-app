@@ -1,35 +1,25 @@
 package com.herprogramacion.hazloakki.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 
 import com.herprogramacion.hazloakki.modelo.NegocioDto;
-import com.herprogramacion.hazloakki.network.AppController;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONObject;
 
 
-public class CollapsingToolbarTabs extends AppCompatActivity {
+public class ActividadDetalleNegocio extends AppCompatActivity {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.3:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://192.168.0.7:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     private NegocioDto negocioDto = new NegocioDto();
 
