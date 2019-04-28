@@ -28,20 +28,20 @@
         <activity
             android:name=".ui.ActividadPrincipal"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ConNavigationDrawer"></activity>
+            android:theme="@style/Theme.ConNavigationDrawer" />
         <activity android:name=".ui.spash.FullscreenFormActivity" />
         <activity
             android:name=".ui.ActividadConfiguracion"
             android:label="@string/titulo_actividad_configuracion"
-            android:parentActivityName=".ui.ActividadPrincipal"></activity>
+            android:parentActivityName=".ui.ActividadPrincipal" />
         <activity
             android:name=".ui.NegociosRecyclerView"
             android:label="@string/app_name"
-            android:theme="@style/Base.AppTheme2"></activity>
+            android:theme="@style/Base.AppTheme2" />
         <activity
             android:name=".provider.ActividadListaAlquileres2"
             android:label="@string/app_name"
-            android:theme="@style/Base.AppTheme2"></activity>
+            android:theme="@style/Base.AppTheme2" />
         <activity
             android:name=".ui.ActividadDetalleNegocio"
             android:label="Musica"
@@ -56,12 +56,12 @@
         <activity
             android:name=".ui.ActividadInfoOferta"
             android:label="@string/title_activity_actividad_info_oferta"
-            android:theme="@style/Theme.RicoPaRico"></activity>
+            android:theme="@style/Theme.RicoPaRico" />
         <activity
             android:name=".ui.ScrollingActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.ActividadOfertaDetalle"></activity>
     </application>
 
 </manifest>

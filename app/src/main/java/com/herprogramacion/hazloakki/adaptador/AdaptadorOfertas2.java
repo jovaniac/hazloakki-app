@@ -8,19 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.herprogramacion.hazloakki.R;
-import com.herprogramacion.hazloakki.modelo.NegocioDto;
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
 
 import java.util.List;
 
-public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.ViewHolder> {
+public class AdaptadorOfertas2 extends RecyclerView.Adapter<AdaptadorOfertas2.ViewHolder> {
     private final Context contexto;
     private List<OfertasDto> listaOfertas;
-    private AdaptadorOfertas.OnItemClickListener escucha;
+    private AdaptadorOfertas2.OnItemClickListener escucha;
 
 
     public interface OnItemClickListener {
-        public void onClick(AdaptadorOfertas.ViewHolder holder, String idAlquiler);
+        public void onClick(AdaptadorOfertas2.ViewHolder holder, String idAlquiler);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
@@ -68,7 +67,7 @@ public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.View
         return null;
     }
 
-    public AdaptadorOfertas(Context contexto, AdaptadorOfertas.OnItemClickListener escucha) {
+    public AdaptadorOfertas2(Context contexto, AdaptadorOfertas2.OnItemClickListener escucha) {
         this.contexto = contexto;
         this.escucha = escucha;
 
@@ -76,14 +75,14 @@ public class AdaptadorOfertas extends RecyclerView.Adapter<AdaptadorOfertas.View
 
 
     @Override
-    public AdaptadorOfertas.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdaptadorOfertas2.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_lista_alquiler, parent, false);
-        return new AdaptadorOfertas.ViewHolder(v);
+        return new AdaptadorOfertas2.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(AdaptadorOfertas.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdaptadorOfertas2.ViewHolder holder, int position) {
         //items.moveToPosition(position);
 
         String s;

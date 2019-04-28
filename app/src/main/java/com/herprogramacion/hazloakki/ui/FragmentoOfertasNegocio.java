@@ -21,7 +21,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
-import com.herprogramacion.hazloakki.adaptador.AdaptadorOfertas;
+import com.herprogramacion.hazloakki.adaptador.AdaptadorOfertas2;
 import com.herprogramacion.hazloakki.adaptador.ProductsAdapter;
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
 import com.herprogramacion.hazloakki.modelo.Product;
@@ -38,15 +38,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOfertas.OnItemClickListener{
+
+public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOfertas2.OnItemClickListener{
 
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
-    private AdaptadorOfertas adaptadorNegocio;
-    private String REQUEST_OFERTAS = "http://192.168.0.7:8089/api/v1/ofertas/negocios/";
+    private String REQUEST_OFERTAS = "http://192.168.0.6:8089/api/v1/ofertas/negocios/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
-    private ProductsAdapter productsAdapter;
+    private ProductsAdapter ofertasAdaptador;
     private String idNegocio  = null;
     private RecyclerView recyclerViewProducts;
 
@@ -61,7 +61,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
         View view = inflater.inflate(R.layout.activity_main_fashion, container, false);
         recyclerViewProducts = view.findViewById(R.id.recyclerViewProducts);
 
-        productsAdapter = new ProductsAdapter(getContext());
+        ofertasAdaptador = new ProductsAdapter(getContext());
         idNegocio = getArguments().getString("idNegocio");
 
 
@@ -89,7 +89,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                switch (productsAdapter.getItemViewType(position)) {
+                switch (ofertasAdaptador.getItemViewType(position)) {
                     case ProductsAdapter.PRODUCT_ITEM:
                         return 1;
                     case ProductsAdapter.LOADING_ITEM:
@@ -106,7 +106,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
 
         //feedData();
 
-       // recyclerViewProducts.addOnScrollListener(endlessScrollListener);
+        // recyclerViewProducts.addOnScrollListener(endlessScrollListener);
         //add space between cards
         recyclerViewProducts.addItemDecoration(new Space(2, 20, true, 0));
 
@@ -157,14 +157,14 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
             Gson gson = new Gson();
             Map<String, String> params = new HashMap<String, String>();
             params.put("idNegocio", idNegocio);
-            sendRequestJsonPost(REQUEST_OFERTAS,params);
+            sendRequestJsonGet(REQUEST_OFERTAS,params);
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
-    public  void sendRequestJsonPost(String url, final Map<String, String> params ) {
+    public  void sendRequestJsonGet(String url, final Map<String, String> params ) {
 
         String idNegocio = params.get("idNegocio");
 
@@ -179,9 +179,9 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
                         public void onResponse(JSONArray response) {
                             //Toast.makeText(getContext(), "Response toString FragmentoOfertasNegocio: " +response.toString(), Toast.LENGTH_LONG).show();
 
-                            productsAdapter.addOfertas(parseJson(response));
-                           // productsAdapter.setListaOfertas(parseJson(response));
-                            recyclerViewProducts.setAdapter(productsAdapter);
+                            ofertasAdaptador.addOfertas(parseJson(response));
+                            // productsAdapter.setListaOfertas(parseJson(response));
+                            recyclerViewProducts.setAdapter(ofertasAdaptador);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -228,15 +228,15 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
                 JSONObject data = (JSONObject) response.get(i);
 
                 OfertasDto ofertas = new OfertasDto();
-                    ofertas.setId(data.getString("id"));
-                    ofertas.setIdNegocio(data.getString("idNegocio"));
-                    ofertas.setTitulo(data.getString("titulo"));
-                    ofertas.setMensaje(data.getString("mensaje"));
-                    ofertas.setImagen(data.getString("imagen"));
-                    ofertas.setFecha(data.getString("fecha"));
-                    ofertas.setDuracion(data.getString("duracion"));
-                    ofertas.setPrecio(data.getString("precio"));
-                    ofertas.setEstatus(data.getBoolean("estatus"));
+                ofertas.setId(data.getString("id"));
+                ofertas.setIdNegocio(data.getString("idNegocio"));
+                ofertas.setTitulo(data.getString("titulo"));
+                ofertas.setMensaje(data.getString("mensaje"));
+                ofertas.setImagen(data.getString("imagen"));
+                ofertas.setFecha(data.getString("fecha"));
+                ofertas.setDuracion(data.getString("duracion"));
+                ofertas.setPrecio(data.getString("precio"));
+                ofertas.setEstatus(data.getBoolean("estatus"));
 
                 listOfertas.add(ofertas);
             }
@@ -259,7 +259,7 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
 
 
     @Override
-    public void onClick(AdaptadorOfertas.ViewHolder holder, String idAlquiler) {
+    public void onClick(AdaptadorOfertas2.ViewHolder holder, String idAlquiler) {
         Toast.makeText(getContext(),"Oferta Seleccionada:"+idAlquiler, Toast.LENGTH_LONG).show();
 
         Intent detalleNegocio = new Intent(getActivity().getApplicationContext(), ActividadDetalleNegocio.class);
@@ -275,4 +275,3 @@ public class FragmentoOfertasNegocio extends Fragment implements AdaptadorOferta
         this.idNegocio = idNegocio;
     }
 }
-

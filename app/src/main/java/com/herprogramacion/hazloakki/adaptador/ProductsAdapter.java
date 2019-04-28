@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
 import com.herprogramacion.hazloakki.R;
+import com.herprogramacion.hazloakki.ui.ActividadOfertaDetalle;
 import com.herprogramacion.hazloakki.ui.ScrollingActivity;
 import com.squareup.picasso.Picasso;
 
@@ -127,7 +128,9 @@ public class ProductsAdapter extends RecyclerView.Adapter {
                 public void onClick(View view) {
                     Toast.makeText(mContext, "IR a la oferta", Toast.LENGTH_LONG).show();
 
-                    Intent detalleOferta = new Intent(mContext.getApplicationContext(), ScrollingActivity.class);
+                    Intent detalleOferta = new Intent(mContext.getApplicationContext(), ActividadOfertaDetalle.class);
+                    detalleOferta.putExtra("idOferta","582291e4-44cf-4341-96b4-fc4a6f7e98f7");
+
                     mContext.startActivity(detalleOferta);
                 }
             });

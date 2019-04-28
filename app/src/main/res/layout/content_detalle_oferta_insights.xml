@@ -29,7 +29,7 @@
             android:paddingTop="10dp"
             android:textSize="10sp"
             android:textAlignment="center"
-            android:textColor="@color/secondary_text"
+            android:textColor="@color/accent"
             tools:text="Por favor, queremos saber tu opinion, o bien subscribete" />
 
         <View
@@ -50,7 +50,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Añadir a mi lista" />
 
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Subscribirse" />
 
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Calificar" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Dejar un tip" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Me gusta" />
 

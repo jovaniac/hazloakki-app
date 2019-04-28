@@ -31,5 +31,6 @@
     <dimen name="vertical_margin">12dp</dimen>
     <dimen name="horizontal_margin_half">6dp</dimen>
     <dimen name="vertical_margin_half">6dp</dimen>
+    <dimen name="app_bar_height">260dp</dimen>
 
 </resources>

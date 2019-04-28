@@ -40,7 +40,7 @@ import java.util.List;
 
 public class FragmentoInfoNegocio extends Fragment {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.7:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://192.168.0.6:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     NegocioDto negocioDtoConDatos = new NegocioDto();
     RecyclerView recyclerView;
@@ -67,7 +67,7 @@ public class FragmentoInfoNegocio extends Fragment {
         //add space item decoration and pass space you want to give
         recyclerView.addItemDecoration(new EspacioInfoNegocio(20));
 
-        detalleNegocio(idNegocio);
+        servicios(idNegocio);
 
         return view;
     }
@@ -168,7 +168,7 @@ public class FragmentoInfoNegocio extends Fragment {
     }
 
 
-    public void detalleNegocio(String idNegocio) {
+    public void servicios(String idNegocio) {
         sendRequestJsonPost(idNegocio);
     }
 
