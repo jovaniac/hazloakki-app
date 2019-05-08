@@ -33,7 +33,7 @@
         android:text="Valoracion" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textCalificacionOferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
@@ -42,23 +42,23 @@
         android:layout_marginStart="17dp"
         android:layout_marginLeft="17dp"
         android:layout_marginTop="8dp"
-        android:text="Calificacion de 9.2 de 10 basado en 3000 visitas a la oferta" />
+        android:text="Calificacion de % de 10 basado en # visitas a la oferta" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView3"
+        android:layout_alignStart="@+id/textCalificacionOferta"
         android:layout_alignParentTop="true"
         android:layout_marginStart="-2dp"
         android:layout_marginTop="146dp"
         android:text="Interesados en tiempo Real" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textNumVistas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView3"
+        android:layout_alignStart="@+id/textCalificacionOferta"
         android:layout_alignParentTop="true"
         android:layout_marginStart="-2dp"
         android:layout_marginTop="174dp"
@@ -68,7 +68,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView5"
+        android:layout_alignTop="@+id/textNumVistas"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="106dp"
@@ -77,7 +77,7 @@
         android:text="Vistas" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/ratingBarOferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

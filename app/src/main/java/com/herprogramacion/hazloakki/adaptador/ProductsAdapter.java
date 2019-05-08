@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.herprogramacion.hazloakki.modelo.OfertasDto;
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.ui.ActividadOfertaDetalle;
-import com.herprogramacion.hazloakki.ui.ScrollingActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

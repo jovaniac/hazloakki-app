@@ -21,31 +21,31 @@
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textTituloDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="17dp"
             android:text="Descripcion de la oferta" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textDescripcionOferta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/textTituloDescripcion"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
             android:layout_marginTop="8dp"
-            android:text="Calificacion de 9.2 de 10 basado en 3000 visitas a la oferta" />
+            android:text="Datos de la oferta a nivel texto" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnCompartir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -57,7 +57,7 @@
             android:text="Compartir" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textTiempoPublicacion"
             android:layout_width="149dp"
             android:layout_height="35dp"
             android:layout_alignParentTop="true"

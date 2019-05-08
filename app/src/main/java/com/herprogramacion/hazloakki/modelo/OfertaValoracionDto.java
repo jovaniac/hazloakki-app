@@ -1,10 +1,10 @@
 package com.herprogramacion.hazloakki.modelo;
 
 public class OfertaValoracionDto extends RecyclerViewItem{
-    private String calificacion;
-    private String vistas;
-    private String interesadosTiempoReal;
 
+    private String calificacion;
+    private String rating;
+    private String vistas;
 
     public String getCalificacion() {
         return calificacion;
@@ -14,19 +14,19 @@ public class OfertaValoracionDto extends RecyclerViewItem{
         this.calificacion = calificacion;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
     public String getVistas() {
         return vistas;
     }
 
     public void setVistas(String vistas) {
         this.vistas = vistas;
-    }
-
-    public String getInteresadosTiempoReal() {
-        return interesadosTiempoReal;
-    }
-
-    public void setInteresadosTiempoReal(String interesadosTiempoReal) {
-        this.interesadosTiempoReal = interesadosTiempoReal;
     }
 }

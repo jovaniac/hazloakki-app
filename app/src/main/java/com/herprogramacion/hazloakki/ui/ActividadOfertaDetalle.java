@@ -18,8 +18,6 @@ import com.google.gson.Gson;
 import com.herprogramacion.hazloakki.R;
 import com.herprogramacion.hazloakki.adaptador.AdaptadorOfertaDetalle;
 
-import com.herprogramacion.hazloakki.modelo.NegocioDto;
-
 import com.herprogramacion.hazloakki.modelo.OfertaComentariosDto;
 import com.herprogramacion.hazloakki.modelo.OfertaDescripcionDto;
 import com.herprogramacion.hazloakki.modelo.OfertaDetalleDto;
@@ -32,8 +30,6 @@ import com.herprogramacion.hazloakki.network.AppController;
 import com.herprogramacion.hazloakki.utils.EspacioInfoNegocio;
 
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,9 +122,9 @@ public class ActividadOfertaDetalle extends AppCompatActivity {
         recyclerViewItems.add(ofertaNegocioDto);
 
             OfertaValoracionDto ofertaValoracionDto = new OfertaValoracionDto();
-            ofertaValoracionDto.setCalificacion("10");
-            ofertaValoracionDto.setInteresadosTiempoReal("50000");
-            ofertaValoracionDto.setVistas("100000");
+            ofertaValoracionDto.setCalificacion("7");
+            ofertaValoracionDto.setRating("3");
+            ofertaValoracionDto.setVistas("180000");
 
         recyclerViewItems.add(ofertaValoracionDto);
 
@@ -137,10 +133,13 @@ public class ActividadOfertaDetalle extends AppCompatActivity {
         recyclerViewItems.add(ofertaInsightsDto);
 
             OfertaDescripcionDto ofertaDescripcionDto = new OfertaDescripcionDto();
-            ofertaDescripcionDto.setDescripcionOferta("Oferta bien chingona");
+            ofertaDescripcionDto.setDescripcionOferta("Dos cartones de 12 coronitas de 210ml por solo $160.\n" +
+                    "\n" +
+                    "Muy buena oferta considerando que directamente en la corona vale $184 el 24(eso si llevas el envase).\n" +
+                    "También aplica en victoria pero marca no disponible.\n");
             ofertaDescripcionDto.setImagen(new String[1]);
             ofertaDescripcionDto.setImagenPerfil("imagen del perfil de la oferta");
-            ofertaDescripcionDto.setTiempoPublicacion("horas dias publicada");
+            ofertaDescripcionDto.setTiempoPublicacion("12 Minutos");
 
         recyclerViewItems.add(ofertaDescripcionDto);
 
@@ -149,10 +148,22 @@ public class ActividadOfertaDetalle extends AppCompatActivity {
          ofertaComentariosDto.setFechaPublicacion("2019-08-12");
          ofertaComentariosDto.setNumeroMeGusta("10");
          ofertaComentariosDto.setUsuario("pepito");
+            recyclerViewItems.add(ofertaComentariosDto);
 
+        ofertaComentariosDto = new OfertaComentariosDto();
+        ofertaComentariosDto.setComentario("la oferta esta bien chingona 2");
+        ofertaComentariosDto.setFechaPublicacion("2019-08-12");
+        ofertaComentariosDto.setNumeroMeGusta("10");
+        ofertaComentariosDto.setUsuario("pedrito");
         recyclerViewItems.add(ofertaComentariosDto);
 
 
+        ofertaComentariosDto = new OfertaComentariosDto();
+        ofertaComentariosDto.setComentario("la oferta esta bien chingona 3 ");
+        ofertaComentariosDto.setFechaPublicacion("2019-08-12");
+        ofertaComentariosDto.setNumeroMeGusta("10");
+        ofertaComentariosDto.setUsuario("juanito");
+            recyclerViewItems.add(ofertaComentariosDto);
 
         return recyclerViewItems;
     }

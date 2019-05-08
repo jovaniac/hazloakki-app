@@ -19,6 +19,20 @@
         android:orientation="vertical">
 
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="15dp"
+            android:text="Por favor, queremos saber tu opinion, o bien subscribete" />
+
+        <!--
         <TextView
             android:id="@+id/text_repo_description"
             android:layout_width="match_parent"
@@ -29,9 +43,8 @@
             android:paddingTop="10dp"
             android:textSize="10sp"
             android:textAlignment="center"
-            android:textColor="@color/accent"
             tools:text="Por favor, queremos saber tu opinion, o bien subscribete" />
-
+-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -40,19 +53,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-
-
             android:orientation="horizontal">
 
-            <TextView
+         <!--   <TextView
                 android:id="@+id/text_addLista"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/accent"
                 android:textSize="10dp"
-                tools:text="Añadir a mi lista" />
+                tools:text="Añadir a mi lista" /> -->
+
+            <TextView
+                android:id="@+id/text_addLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="10dp"
+                android:text="Añadir a mi lista" />
 
             <TextView
                 android:id="@+id/text_subscripcion"
@@ -60,7 +78,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Subscribirse" />
 
@@ -70,7 +87,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Calificar" />
 
@@ -80,7 +96,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Dejar un tip" />
 
@@ -90,7 +105,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/accent"
                 android:textSize="10dp"
                 tools:text="Me gusta" />
 
