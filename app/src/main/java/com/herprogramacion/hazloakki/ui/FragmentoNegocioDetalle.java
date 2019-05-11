@@ -45,7 +45,7 @@ public class FragmentoNegocioDetalle extends Fragment implements AdaptadorNegoci
     private RecyclerView listaUI;
     private LinearLayoutManager linearLayoutManager;
     private AdaptadorNegocio adaptadorNegocio;
-    private String REQUEST_NEGOCIOS = "http://192.168.0.6:8086/api/v1/negocios/acciones/";
+    private String REQUEST_NEGOCIOS = "http://10.204.117.70:8086/api/v1/negocios/acciones/";
     private static String TAG = NegociosRecyclerView.class.getSimpleName();
     private static Context ctx;
 

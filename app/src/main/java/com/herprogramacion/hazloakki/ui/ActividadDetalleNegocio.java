@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class ActividadDetalleNegocio extends AppCompatActivity {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.6:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://10.204.117.70:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     private NegocioDto negocioDto = new NegocioDto();
 

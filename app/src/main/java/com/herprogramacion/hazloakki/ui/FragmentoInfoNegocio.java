@@ -40,7 +40,7 @@ import java.util.List;
 
 public class FragmentoInfoNegocio extends Fragment {
 
-    private String REQUEST_NEGOCIOS= "http://192.168.0.6:8086/api/v1/negocios/";
+    private String REQUEST_NEGOCIOS= "http://10.204.117.70:8086/api/v1/negocios/";
     Gson gsonConvert = new Gson();
     NegocioDto negocioDtoConDatos = new NegocioDto();
     RecyclerView recyclerView;

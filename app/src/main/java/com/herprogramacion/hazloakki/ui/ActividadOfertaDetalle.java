@@ -39,7 +39,7 @@ public class ActividadOfertaDetalle extends AppCompatActivity {
     private AdaptadorOfertaDetalle adaptadorOfertaDetalle;
     private RecyclerView recyclerView;
     private OfertaDetalleDto ofertaDetalleDto;
-    private String REQUEST_OFERTAS_DETALLE ="http://192.168.0.6:8089/api/v1/ofertas/";
+    private String REQUEST_OFERTAS_DETALLE ="http://10.204.117.70:8089/api/v1/ofertas/";
     private Gson gsonConvert = new Gson();
     private String idOferta;
 
